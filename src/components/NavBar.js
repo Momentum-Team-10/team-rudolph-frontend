@@ -1,4 +1,4 @@
-export default function NavBar({ byCreatedAt, byHighestRated }) {
+export default function NavBar({ byCreatedAt, byHighestRated, userImg }) {
   return ( 
     <div className="nav-bar">
       <div className="nav-buttons">
@@ -6,7 +6,7 @@ export default function NavBar({ byCreatedAt, byHighestRated }) {
         <button>Highest Rated</button>
       </div>
       <h1 className="sitename">Heard All Day</h1>
-      <img src="https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png" alt="User Avatar" className="avatar" />
+      <img src={userImg} alt="User Avatar" className="avatar" />
     </div> 
   )
 }
