@@ -36,3 +36,23 @@
     transform: rotate(360deg);
   }
 }
+
+.nav-bar {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.nav-buttons {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+}
+
+.avatar {
+  width: 90px;
+  margin: auto;
+}
+
+.sitename {
+  margin: auto;
+}
