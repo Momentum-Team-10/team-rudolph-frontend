@@ -3,7 +3,7 @@ import QuestionCard from './components/QuestionCard.js'
 
 function App() {
   return (
-    <QuestionCard questionTitle='Question Title Goes Here' votesCounter='' answersCounter='answerCounter' viewsCounter='viewsCounter'></QuestionCard>
+    <QuestionCard questionTitle='Question Title Goes Here' votesCounter='voteCounter' answersCounter='answerCounter' viewsCounter='viewsCounter'></QuestionCard>
   );
 }
 
