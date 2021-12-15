@@ -12,7 +12,8 @@ function App() {
         byCreatedAt='Filter Call by Most Recent'
         byHighestRated='Filter Call by Highest Rated'
         userImg="https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png"
-        user={user}/>
+        user={user}
+        setUser={setUser}/>
       <QuestionCard
         questionTitle='Question Title Goes Here'
         votesCounter='voteCounter'

@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { requestLogin } from '../ajax'
+import { requestLogin } from '../Ajax.js'
 
 const Login = ({setAuth}) => {
   const [username, setUsername] = useState('')
