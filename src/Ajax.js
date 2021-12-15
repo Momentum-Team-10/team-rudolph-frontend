@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 export function requestLogin(username, password) {
   // a real login request would go here but in the meantime, we'll fake it
   return fakeResponse(username, password)
