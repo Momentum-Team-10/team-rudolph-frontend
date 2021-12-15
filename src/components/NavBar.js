@@ -1,7 +1,12 @@
 import Login from './Login';
+import { useState } from 'react';
+import Registration from './Registration';
 
 export default function NavBar({ byCreatedAt, byHighestRated, userImg, user, setUser }) {
-  return ( 
+  const [expanded, setExpanded] = useState(false);
+  const [expRegister, setExpRegister] = useState(false);
+
+  return (
     <div className="nav-bar">
       <div className="nav-div">
         <button>Most Recent</button>
@@ -14,10 +19,12 @@ export default function NavBar({ byCreatedAt, byHighestRated, userImg, user, set
       {(user === !null) ? <img src={userImg} alt="User Avatar" className="avatar" />
         :
         <div className="nav-div">
-          <button>Login</button>
-          <button>Register</button>
+          <button onClick={() => (expanded ? setExpanded(false) : setExpanded(true))}>Login</button>
+          {expanded && <Login />}
+          <button onClick={() => (expRegister ? setExpRegister(false) : setExpRegister(true))}>Register</button>
+          {expRegister && <Registration />}
         </div>
       }
-    </div> 
-  )
+    </div>
+  );
 }
