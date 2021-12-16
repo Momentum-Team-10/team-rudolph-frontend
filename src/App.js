@@ -5,6 +5,7 @@ import QuestionCardZoom from './components/QuestionCardZoom.js'
 import ResponseCard from './components/ResponseCard.js'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
+import {Link, Outlet} from 'react-router-dom'
 
 function App() {
   const [user, setUser] = useState({})
@@ -29,12 +30,15 @@ function App() {
       user={user}
       setUser={setUser}/>
       {questionList.map((question) => (
+        <Link to={`/${question.pk}`} key={question.index}>
         <QuestionCard
         questionTitle={question.title}
         votesCounter={question.votes}
         answersCounter={question.answers.length}
         author={question.author}
+        key={question.index}
         />
+        </Link>
       ))}
     <QuestionCard
       questionTitle='Question Title Goes Here'
