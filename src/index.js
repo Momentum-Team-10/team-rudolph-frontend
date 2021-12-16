@@ -9,10 +9,8 @@ import QuestionZoom from "./routes/questionZoom"
 ReactDOM.render(
   <BrowserRouter>
     <Routes>
-      <Route path='/' element={<App />}>
-        
-      </Route>
-      <Route path=':questionId' element={<QuestionZoom />}/>
+      <Route path='/' element={<App />} /> 
+      <Route path='questions/:questionId' element={<QuestionZoom />}/>
     </Routes>
   </BrowserRouter>,
   document.getElementById('root')
