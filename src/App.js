@@ -1,7 +1,6 @@
 import './App.css';
 import NavBar from './components/NavBar';
 import QuestionCard from './components/QuestionCard.js'
-import ResponseCard from './components/ResponseCard.js'
 import { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom'
