@@ -4,7 +4,7 @@ export default function ResponseCard(props) {
     return (
         <div className='response-card'>
             <p className='response-text'>{responseText}</p>
-            <div best-answer-and-vote-bar>
+            <div className='best-answer-and-vote-bar'>
                 {bestAnswer ?
                     <img src="https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png" className='bestAnswerFlair' alt='Best Answer Flair' />
                     :
