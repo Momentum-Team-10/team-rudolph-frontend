@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { requestLogin } from '../Ajax.js'
+import axios from 'axios';
 
 const Login = ({setAuth}) => {
   const [username, setUsername] = useState('')
@@ -8,14 +8,15 @@ const Login = ({setAuth}) => {
 
   const handleSubmit = (event) => {
     event.preventDefault()
-    // axios.post(someUrl).then(data=> setSomeState(data))
-    // here is my FAKE REQUEST PLACEHOLDER
-    requestLogin(username, password)
+    console.log("click happens")
+    axios.post("https://questions-t10.herokuapp.com/auth/token/login/", {
+      "username": username,
+      "password": password
+    })
       .then((data) => {
-        // if we have a response and it includes the auth_token key
-        if (data && data.auth_token) {
-          // update the parent's state to include auth token
-          setAuth(username, data.auth_token)
+        console.log(data)
+        if (data && data.data.auth_token) {
+          setAuth(username, data.data.auth_token)
         }
       })
       .catch((error) => setErrors(error.message))

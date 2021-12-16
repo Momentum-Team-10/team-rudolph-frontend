@@ -4,9 +4,10 @@ import QuestionCard from './components/QuestionCard.js'
 import QuestionCardZoom from './components/QuestionCardZoom.js'
 import ResponseCard from './components/ResponseCard.js'
 import { useState } from 'react';
+import axios from 'axios';
 
 function App() {
-  const [user, setUser] = useState({})
+  const [user, setUser] = useState('')
   const [token, setToken] = useState('')
 
   function setAuth(username, token) {
@@ -16,6 +17,7 @@ function App() {
 
   const logout = () => {
     setUser({})
+    axios.post("https://questions-t10.herokuapp.com/auth/token/logout/")
   }
 
   return (
