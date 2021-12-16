@@ -1,5 +1,5 @@
+import axios from 'axios';
 import { useState } from 'react';
-import registrationPost from '../Ajax';
 
 const Registration = ({setAuth}) => {
   const [username, setUsername] = useState('');
@@ -10,7 +10,11 @@ const Registration = ({setAuth}) => {
   const handleSubmit = (event) => {
     event.preventDefault()
     if (password === retypePassword) {
-      registrationPost(username, password, retypePassword)
+      axios.post("https://questions-t10.herokuapp.com/users/", {
+        username: username,
+        password: password,
+        re_password: retypePassword,
+      })
         .then((data) => {
           if (data && data.auth_token) {
             setAuth(username, data.auth_token)
@@ -33,6 +37,7 @@ const Registration = ({setAuth}) => {
           value={username}
           onChange={(event) => setUsername(event.target.value)}>
         </input>
+        <p>{username}</p>
       </div>
       <div className="mv2">
         <label className="db mb2" htmlFor="password">
@@ -44,6 +49,7 @@ const Registration = ({setAuth}) => {
           value={password}
           onChange={(event) => setPassword(event.target.value)}
         />
+        <p>{password}</p>
       </div>
       <div className="mv2">
         <label className="db mb2" htmlFor="retypePassword">
@@ -55,6 +61,7 @@ const Registration = ({setAuth}) => {
           value={retypePassword}
           onChange={(event) => setRetypePassword(event.target.value)}
         />
+        <p>{retypePassword}</p>
       </div>
       <div className="mv2">
         <button type="submit">Submit</button>
