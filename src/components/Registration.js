@@ -1,13 +1,30 @@
 import { useState } from 'react';
+import registrationPost from '../Ajax';
 
-const Registration = () => {
+const Registration = ({setAuth}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [retypePassword, setRetypePassword] = useState('');
+  const [error, setErrors] = useState('');
+
+  const handleSubmit = (event) => {
+    event.preventDefault()
+    if (password === retypePassword) {
+      registrationPost(username, password, retypePassword)
+        .then((data) => {
+          if (data && data.auth_token) {
+            setAuth(username, data.auth_token)
+          }
+        })
+        .catch((error) => setErrors(error.message))
+    } else {
+      alert("Password and Re-typed Password do not match!")
+    }
+  }
 
 
   return (
-    <form>
+    <form onSubmit={handleSubmit}>
       <div className="username-register">
         <label htmlFor="username">Create Username</label>
         <input

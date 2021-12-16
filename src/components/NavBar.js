@@ -2,7 +2,7 @@ import Login from './Login';
 import { useState } from 'react';
 import Registration from './Registration';
 
-export default function NavBar({ byCreatedAt, byHighestRated, userImg, user, setUser }) {
+export default function NavBar({ byCreatedAt, byHighestRated, userImg, user, setUser, logout, setAuth }) {
   const [expanded, setExpanded] = useState(false);
   const [expRegister, setExpRegister] = useState(false);
 
@@ -16,11 +16,16 @@ export default function NavBar({ byCreatedAt, byHighestRated, userImg, user, set
         <h1 className="sitename">In the Weeds</h1>
         <h3>A Site for the Culinarily Curious</h3>
       </div>
-      {(user === !null) ? <img src={userImg} alt="User Avatar" className="avatar" />
+      {(user === !null) ? (
+        <>
+        <img src={userImg} alt="User Avatar" className="avatar" />
+        <button onClick={logout}>Log Out</button>
+        </>
+        )
         :
         <div className="nav-div">
           <button onClick={() => (expanded ? setExpanded(false) : setExpanded(true))}>Login</button>
-          {expanded && <Login />}
+          {expanded && <Login setAuth={setAuth}/>}
           <button onClick={() => (expRegister ? setExpRegister(false) : setExpRegister(true))}>Register</button>
           {expRegister && <Registration />}
         </div>
