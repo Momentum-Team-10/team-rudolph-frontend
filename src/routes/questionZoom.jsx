@@ -8,6 +8,7 @@ export default function QuestionZoom() {
     let params = useParams()
     const [questionData, setQuestionData] = useState([])
     const [answerData, setAnswerData] = useState([])
+    
     useEffect(() => {
         const questionUrl = `https://questions-t10.herokuapp.com/questions/${params.questionId}`
         axios
@@ -18,7 +19,7 @@ export default function QuestionZoom() {
             setQuestionData(response.data)
             setAnswerData(response.data.answers)
           })
-      }, [])
+      }, [params])
     return (
         <>
         <QuestionCardZoom
