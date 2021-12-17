@@ -44,7 +44,7 @@ function App() {
           element={<QuestionZoom />} />
         <Route
           path='user/:userId'
-          element={<UserPage />} />
+          element={<UserPage user={user} />} />
       </Routes>
     </Router>
   );
