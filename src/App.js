@@ -41,9 +41,6 @@ function App() {
         user={user}
         setAuth={setAuth}
         logout={logout}/>
-    <QuestionCard questionTitle='Question Title Goes Here' votesCounter='10' answersCounter='2' viewsCounter='204'></QuestionCard>
-    <QuestionCardZoom questionTitle='Question Title Goes Here' questionText='This is the text of the question' attachments='Attachment'></QuestionCardZoom>
-    <ResponseCard responseText='Response text goes here' responseUpvotes={25} responseDownvotes={10} bestAnswer={true}></ResponseCard>
       {questionList.map((question) => (
         <Link to={`/questions/${question.pk}`} key={question.pk}>
           <QuestionCard
