@@ -10,7 +10,6 @@ const UserPage = ({user, token}) => {
   const [userQuestions, setUserQuestions] = useState([])
   const [userProfile, setUserProfile] = useState({})
   const [userAnswers, setUserAnswers] = useState([])
-  const [userId, setUserId] = useState('')
 
   useEffect(() => {
     const questionsUrl = 'https://questions-t10.herokuapp.com/questions/'
@@ -26,8 +25,7 @@ const UserPage = ({user, token}) => {
       }
     })
       .then(response => {
-        setUserId(response.data[0].id)
-        axios.get(`https://questions-t10.herokuapp.com/user/${userId}/answers/`)
+        axios.get(`https://questions-t10.herokuapp.com/user/${response.data[0].id}/answers/`)
           .then(response => {
             console.log(response.data)
             setUserAnswers(response.data)
