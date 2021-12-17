@@ -1,6 +1,6 @@
-import Profile from "./Profile"
-import UserAnswers from "./UserAnswers";
-import UserQuestions from "./UserQuestions";
+import Profile from "../components/Profile"
+import UserAnswers from "../components/UserAnswers";
+import UserQuestions from "../components/UserQuestions";
 
 const UserPage = () => {
   return (

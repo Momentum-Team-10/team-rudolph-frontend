@@ -1,6 +1,7 @@
 import Login from './Login';
 import { useState } from 'react';
 import Registration from './Registration';
+import { Link } from 'react-router-dom';
 
 export default function NavBar({ byCreatedAt, byHighestRated, userImg, user, setUser, logout, setAuth }) {
   const [loggedUser, setLoggedUser] = useState(user);
@@ -14,14 +15,19 @@ export default function NavBar({ byCreatedAt, byHighestRated, userImg, user, set
         <button>Highest Rated</button>
       </div>
       <div className="nav-div">
-        <h1 className="sitename">In the Weeds</h1>
-        <h3>A Site for the Culinarily Curious</h3>
+        <Link to="/">
+          <h1 className="sitename">In the Weeds</h1>
+          <h3>A Site for the Culinarily Curious</h3>
+        </Link>
       </div>
       {(user !== '') ? (
         <>
-        <img src={userImg} alt="User Avatar" className="avatar" />
+        <Link to={`/user/${user}`} key={user}>
+          <img src={userImg} alt="User Avatar" className="avatar" />
+        </Link>
         <button onClick={logout}>Log Out</button>
         </>
+        
         )
         :
         <div className="nav-div">

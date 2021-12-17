@@ -5,6 +5,7 @@ import axios from 'axios';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Homepage from './routes/Homepage'
 import QuestionZoom from './routes/QuestionZoom'
+import UserPage from './routes/UserPage'
 
 function App() {
   const [user, setUser] = useState('')
@@ -18,7 +19,7 @@ function App() {
 
   const logout = () => {
     setUser('')
-    axios.post("https://questions-t10.herokuapp.com/auth/token/logout/", {
+    axios.post("https://questions-t10.herokuapp.com/auth/token/logout/", {}, {
       headers: {
         "Authorization": `Token ${token}`
       }
@@ -41,6 +42,9 @@ function App() {
         <Route
           path='questions/:questionId'
           element={<QuestionZoom />} />
+        <Route
+          path='user/:userId'
+          element={<UserPage />} />
       </Routes>
     </Router>
   );
