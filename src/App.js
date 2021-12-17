@@ -5,6 +5,7 @@ import axios from 'axios';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Homepage from './routes/Homepage'
 import QuestionZoom from './routes/QuestionZoom'
+import NewQuestion from './routes/NewQuestion';
 
 function App() {
   const [user, setUser] = useState('')
@@ -41,6 +42,9 @@ function App() {
         <Route
           path='questions/:questionId'
           element={<QuestionZoom />} />
+        <Route
+          path='questions/newquestion'
+          element={<NewQuestion />} />
       </Routes>
     </Router>
   );
