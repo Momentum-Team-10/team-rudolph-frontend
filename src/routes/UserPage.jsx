@@ -5,7 +5,7 @@ import axios from 'axios';
 import { Link } from "react-router-dom";
 import QuestionCard from "../components/QuestionCard";
 
-const UserPage = ({loggedInUser, user, token}) => {
+const UserPage = ({loggedInUser, user, token, updateAvatar}) => {
 
   const [userQuestions, setUserQuestions] = useState([]);
   const [userAnswers, setUserAnswers] = useState([]);
@@ -33,6 +33,7 @@ const UserPage = ({loggedInUser, user, token}) => {
           .then(response => {
             console.log(response.data)
             setUserInfo(response.data)
+            updateAvatar(response.data.img_url)
           })
       })
   }, [])

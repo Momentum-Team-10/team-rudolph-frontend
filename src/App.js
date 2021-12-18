@@ -11,6 +11,10 @@ import UserPage from './routes/UserPage'
 function App() {
   const [user, setUser] = useState('')
   const [token, setToken] = useState('')
+  const [avatar, setAvatar] = useState("https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png")
+
+  const updateAvatar = (newImg) =>
+    setAvatar(newImg)
 
 
   function setAuth(username, token) {
@@ -31,10 +35,11 @@ function App() {
       <NavBar
         byCreatedAt='Filter Call by Most Recent'
         byHighestRated='Filter Call by Highest Rated'
-        userImg="https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png"
+        userImg={avatar}
         user={user}
         setAuth={setAuth}
-        logout={logout} />
+        logout={logout}
+      />
       <Routes>
         <Route
           path='/'
@@ -48,7 +53,7 @@ function App() {
           />
         <Route
           path='user/:userId'
-          element={<UserPage user={user} token={token} loggedInUser={user} />} 
+          element={<UserPage user={user} token={token} loggedInUser={user} updateAvatar={updateAvatar} />} 
         />
       </Routes>
     </Router>
