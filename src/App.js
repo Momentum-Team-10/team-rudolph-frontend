@@ -25,7 +25,6 @@ function App() {
       }
     })
   }
-
   return (
     <Router>
       <NavBar
@@ -44,7 +43,8 @@ function App() {
           element={<QuestionZoom />} />
         <Route
           path='questions/newquestion'
-          element={<NewQuestion />} />
+          element={<NewQuestion token={token}/>}
+          />
       </Routes>
     </Router>
   );
