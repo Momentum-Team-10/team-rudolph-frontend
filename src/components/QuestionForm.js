@@ -23,7 +23,6 @@ export default function QuestionForm({ token }) {
             setQuestionBody('')
             return response
         })
-        if (token === '') {alert("Please log in to submit a question.")}
     }
 
     const handleChange = (inputType, event) => {
@@ -47,8 +46,8 @@ export default function QuestionForm({ token }) {
                     onChange={(event) => handleChange('questionTitle', event)}
                 />
                 <label className='form-label'>Question Details: </label>
-                <input
-                    className='input-field'
+                <textarea
+                    className='textarea-field'
                     type='text'
                     placeholder='Question details'
                     value={questionBody}
