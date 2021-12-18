@@ -21,12 +21,12 @@ export default function NavBar({ byCreatedAt, byHighestRated, userImg, user, set
         </Link>
       </div>
       {(user !== '') ? (
-        <>
-        <Link to={`/user/${user}`} key={user}>
-          <img src={userImg} alt="User Avatar" className="avatar" />
-        </Link>
-        <button onClick={logout}>Log Out</button>
-        </>
+        <div className="nav-div">
+          <Link to={`/user/${user}`} key={user}>
+            <img src={userImg} alt="User Avatar" className="avatar" />
+          </Link>
+          <button onClick={logout}>Log Out</button>
+        </div>
         
         )
         :

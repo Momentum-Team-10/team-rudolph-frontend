@@ -48,7 +48,7 @@ function App() {
           />
         <Route
           path='user/:userId'
-          element={<UserPage user={user} token={token} />} 
+          element={<UserPage user={user} token={token} loggedInUser={user} />} 
         />
       </Routes>
     </Router>
