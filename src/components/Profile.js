@@ -12,7 +12,14 @@ const Profile = ({ userImg, profileText, thisUser, token }) => {
   const handleAvatarSubmit = (event) => {
     event.preventDefault()
     console.log("click happens")
-    axios.post()
+    console.log(avatar)
+    axios.patch("https://questions-t10.herokuapp.com/auth/users/me", {
+      "image_url": `${avatar}`
+    }, {
+      headers: {
+        "Authorization": `Token ${token}`
+      }
+    })
       .then((data) => {
         console.log(data)
       })
@@ -22,7 +29,13 @@ const Profile = ({ userImg, profileText, thisUser, token }) => {
   const handleBioSubmit = (event) => {
     event.preventDefault()
     console.log("click happens")
-    axios.post()
+    axios.patch("https://questions-t10.herokuapp.com/auth/users/me", {
+      "bio": `${bio}`
+    }, {
+      headers: {
+        "Authorization": `Token ${token}`
+      }
+    })
       .then((data) => {
         console.log(data)
       })
@@ -49,6 +62,7 @@ const Profile = ({ userImg, profileText, thisUser, token }) => {
                 onChange={(event) => setAvatar(event.target.value)}
               />
             </div>
+            <button type="submit">Submit</button>
           </form>
         )}
       </div>
@@ -70,6 +84,7 @@ const Profile = ({ userImg, profileText, thisUser, token }) => {
                 onChange={(event) => setBio(event.target.value)}
               />
             </div>
+            <button type="submit">Submit</button>
           </form>
         )}
       </div>
