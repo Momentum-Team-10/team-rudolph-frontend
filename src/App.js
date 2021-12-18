@@ -6,6 +6,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Homepage from './routes/Homepage'
 import QuestionZoom from './routes/QuestionZoom'
 import NewQuestion from './routes/NewQuestion';
+import UserPage from './routes/UserPage'
 
 function App() {
   const [user, setUser] = useState('')
@@ -19,7 +20,7 @@ function App() {
 
   const logout = () => {
     setUser('')
-    axios.post("https://questions-t10.herokuapp.com/auth/token/logout/", {
+    axios.post("https://questions-t10.herokuapp.com/auth/token/logout/", {}, {
       headers: {
         "Authorization": `Token ${token}`
       }
@@ -45,6 +46,10 @@ function App() {
           path='questions/newquestion'
           element={<NewQuestion token={token}/>}
           />
+        <Route
+          path='user/:userId'
+          element={<UserPage user={user} token={token} />} 
+        />
       </Routes>
     </Router>
   );

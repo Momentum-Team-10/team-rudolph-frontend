@@ -1,8 +1,10 @@
-const UserAnswers = ({questionTitle, answerData}) => {
+const UserAnswers = ({ questionTitle, answerData }) => {
+  return (
   <div className="user-answers">
-    <span>{questionTitle}</span>
+    <span>Question Title</span>
     <div>Placehodler for Answer Component</div>
-  </div>
+  </div> 
+  )
 }
 
 export default UserAnswers;
