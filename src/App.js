@@ -5,6 +5,7 @@ import axios from 'axios';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Homepage from './routes/Homepage'
 import QuestionZoom from './routes/QuestionZoom'
+import NewQuestion from './routes/NewQuestion';
 import UserPage from './routes/UserPage'
 
 function App() {
@@ -25,7 +26,6 @@ function App() {
       }
     })
   }
-
   return (
     <Router>
       <NavBar
@@ -43,8 +43,13 @@ function App() {
           path='questions/:questionId'
           element={<QuestionZoom />} />
         <Route
+          path='questions/newquestion'
+          element={<NewQuestion token={token}/>}
+          />
+        <Route
           path='user/:userId'
-          element={<UserPage user={user} token={token} />} />
+          element={<UserPage user={user} token={token} />} 
+        />
       </Routes>
     </Router>
   );
