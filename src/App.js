@@ -7,6 +7,8 @@ import Homepage from './routes/Homepage'
 import QuestionZoom from './routes/QuestionZoom'
 import NewQuestion from './routes/NewQuestion';
 import UserPage from './routes/UserPage'
+import Login from './routes/Login'
+import Registration from './routes/Registration'
 
 function App() {
   const [user, setUser] = useState('')
@@ -54,6 +56,14 @@ function App() {
         <Route
           path='user/:userId'
           element={<UserPage user={user} token={token} loggedInUser={user} updateAvatar={updateAvatar} />} 
+        />
+        <Route
+          path='/login'
+          element={<Login setAuth={setAuth} />} 
+        />
+        <Route
+          path='/registration'
+          element={<Registration setAuth={setAuth} />} 
         />
       </Routes>
     </Router>

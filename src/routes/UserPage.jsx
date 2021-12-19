@@ -34,6 +34,7 @@ const UserPage = ({loggedInUser, user, token, updateAvatar}) => {
             console.log(response.data)
             setUserInfo(response.data)
             updateAvatar(response.data.img_url)
+            console.log(userInfo)
           })
       })
   }, [])

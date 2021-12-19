@@ -1,12 +1,9 @@
-import Login from './Login';
+
 import { useState } from 'react';
-import Registration from './Registration';
+import Registration from '../routes/Registration';
 import { Link } from 'react-router-dom';
 
 export default function NavBar({ byCreatedAt, byHighestRated, userImg, user, setUser, logout, setAuth }) {
-  const [loggedUser, setLoggedUser] = useState(user);
-  const [expanded, setExpanded] = useState(false);
-  const [expRegister, setExpRegister] = useState(false);
 
   return (
     <div className="nav-bar">
@@ -31,10 +28,12 @@ export default function NavBar({ byCreatedAt, byHighestRated, userImg, user, set
         )
         :
         <div className="nav-div">
-          <button onClick={() => (expanded ? setExpanded(false) : setExpanded(true))}>Login</button>
-          {expanded && <Login setAuth={setAuth}/>}
-          <button onClick={() => (expRegister ? setExpRegister(false) : setExpRegister(true))}>Register</button>
-          {expRegister && <Registration setAuth={setAuth} />}
+          <Link to='/login'>
+            <span>Login</span>
+          </Link>
+          <Link to='/registration'>
+            <span>Register</span>
+          </Link>
         </div>
       }
     </div>

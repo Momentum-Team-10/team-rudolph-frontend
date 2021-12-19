@@ -1,11 +1,13 @@
 import axios from 'axios';
 import { useState } from 'react';
+import  { Navigate } from 'react-router'
 
 const Registration = ({setAuth}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [retypePassword, setRetypePassword] = useState('');
   const [error, setErrors] = useState('');
+  const [loggedIn, setLoggedIn] = useState(false)
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -19,6 +21,7 @@ const Registration = ({setAuth}) => {
           console.log(data);
           if (data && data.data.auth_token) {
             setAuth(username, data.data.auth_token)
+            setLoggedIn(true)
           }
         })
         .catch((error) => setErrors(error.message))
@@ -28,8 +31,8 @@ const Registration = ({setAuth}) => {
   }
 
 
-  return (
-    <form onSubmit={handleSubmit}>
+  return ( loggedIn ? <Navigate to="/" /> :
+    (<form onSubmit={handleSubmit}>
       <div className="username-register">
         <label htmlFor="usernameInput">Create Username</label>
         <input
@@ -38,7 +41,6 @@ const Registration = ({setAuth}) => {
           value={username}
           onChange={(event) => setUsername(event.target.value)}>
         </input>
-        <p>{username}</p>
       </div>
       <div className="mv2">
         <label className="db mb2" htmlFor="passwordInput">
@@ -50,7 +52,6 @@ const Registration = ({setAuth}) => {
           value={password}
           onChange={(event) => setPassword(event.target.value)}
         />
-        <p>{password}</p>
       </div>
       <div className="mv2">
         <label className="db mb2" htmlFor="retypePasswordInput">
@@ -62,12 +63,11 @@ const Registration = ({setAuth}) => {
           value={retypePassword}
           onChange={(event) => setRetypePassword(event.target.value)}
         />
-        <p>{retypePassword}</p>
       </div>
       <div className="mv2">
         <button type="submit">Submit</button>
       </div>
-    </form>
+    </form>)
   )
 }
 
