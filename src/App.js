@@ -41,7 +41,7 @@ function App() {
           element={<Homepage />} />
         <Route
           path='questions/:questionId'
-          element={<QuestionZoom />} />
+          element={<QuestionZoom user={user} token={token}/>} />
         <Route
           path='questions/newquestion'
           element={<NewQuestion token={token}/>}
