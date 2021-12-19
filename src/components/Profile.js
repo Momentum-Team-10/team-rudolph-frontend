@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 
-const Profile = ({ userImg, profileText, thisUser, token }) => {
+const Profile = ({ userImg, profileText, thisUser, token, changeBio }) => {
   
   const [expAvatar, setExpAvatar] = useState(false)
   const [expBio, setExpBio] = useState(false)
@@ -40,6 +40,7 @@ const Profile = ({ userImg, profileText, thisUser, token }) => {
     })
       .then((data) => {
         setBio(bio)
+        changeBio(bio)
       })
       .catch((error) => alert(error.message))
   }
@@ -67,7 +68,7 @@ const Profile = ({ userImg, profileText, thisUser, token }) => {
         )}
       </div>
       <div>
-        <p>{bio}</p>
+        <p>{profileText}</p>
         <button onClick={() => (expBio ? setExpBio(false) : setExpBio(true))}>Edit Bio</button>
         {expBio && (
           <form onSubmit={handleBioSubmit}>

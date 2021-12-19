@@ -9,7 +9,10 @@ const UserPage = ({loggedInUser, user, token, updateAvatar}) => {
 
   const [userQuestions, setUserQuestions] = useState([]);
   const [userAnswers, setUserAnswers] = useState([]);
-  const [userInfo, setUserInfo] = useState({});
+  const [userImg, setUserImg] = useState('')
+  const [userBio, setUserBio] = useState('')
+
+  const changeBio = (newBio) => setUserBio(newBio)
 
   useEffect(() => {
     const questionsUrl = 'https://questions-t10.herokuapp.com/questions/'
@@ -31,17 +34,16 @@ const UserPage = ({loggedInUser, user, token, updateAvatar}) => {
           })
         axios.get(`https://questions-t10.herokuapp.com/user/${response.data[0].id}/`)
           .then(response => {
-            console.log(response.data)
-            setUserInfo(response.data)
-            updateAvatar(response.data.img_url)
-            console.log(userInfo)
+            setUserImg(response.data.image_url)
+            updateAvatar(response.data.image_url)
+            setUserBio(response.data.bio)
           })
-      })
+        })
   }, [])
 
   return (
     <div>
-        <Profile userImg={userInfo.img_url} profileText={userInfo.bio} thisUser={(loggedInUser === user) ? true : false} token={token} />
+        <Profile userImg={userImg} profileText={userBio} thisUser={(loggedInUser === user) ? true : false} token={token} changeBio={changeBio} />
         {userQuestions.filter(question => question.author === user).map((filteredQuestion) => (
           <Link to={`/questions/${filteredQuestion.pk}`} key={filteredQuestion.pk}>
             <QuestionCard

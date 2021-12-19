@@ -13,7 +13,7 @@ import Registration from './routes/Registration'
 function App() {
   const [user, setUser] = useState('')
   const [token, setToken] = useState('')
-  const [avatar, setAvatar] = useState("https://cdn.icon-icons.com/icons2/1378/PNG/512/avatardefault_92824.png")
+  const [avatar, setAvatar] = useState("")
 
   const updateAvatar = (newImg) =>
     setAvatar(newImg)
@@ -59,7 +59,7 @@ function App() {
         />
         <Route
           path='/login'
-          element={<Login setAuth={setAuth} />} 
+          element={<Login setAuth={setAuth} updateAvatar={updateAvatar} />} 
         />
         <Route
           path='/registration'

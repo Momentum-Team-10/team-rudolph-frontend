@@ -2,11 +2,12 @@ import { useState } from 'react';
 import axios from 'axios';
 import { Navigate } from 'react-router'
 
-const Login = ({setAuth}) => {
+const Login = ({setAuth, updateAvatar}) => {
   const [username, setUsername] = useState('')
   const [password, setPassword] = useState('')
   const [errors, setErrors] = useState(null)
   const [loggedIn, setLoggedIn] = useState(false)
+  const [token, setToken] = useState('')
 
   const handleSubmit = (event) => {
     event.preventDefault()
@@ -20,9 +21,25 @@ const Login = ({setAuth}) => {
         if (data && data.data.auth_token) {
           setAuth(username, data.data.auth_token)
           setLoggedIn(true)
+          setToken(data.data.auth_token)
+          console.log(token)
+          console.log(data.data.auth_token)
         }
       })
       .catch((error) => setErrors(error.message))
+    
+    axios.get('https://questions-t10.herokuapp.com/auth/users', {
+      headers: {
+        "Authorization": `Token ${token}`
+      }
+    })
+      .then(response => {
+        axios.get(`https://questions-t10.herokuapp.com/user/${response.data[0].id}/`)
+          .then(response => {
+            console.log(response.data.image_url)
+            updateAvatar(response.data.image_url)
+          })
+          })
   }
 
   return (

@@ -13,7 +13,7 @@ export default function NavBar({ byCreatedAt, byHighestRated, userImg, user, set
       </div>
       <div className="nav-div">
         <Link to="/">
-          <h1 className="sitename">In the Weeds</h1>
+          <h1 className="sitename">Yes, Chef!</h1>
           <h3>A Site for the Culinarily Curious</h3>
         </Link>
       </div>

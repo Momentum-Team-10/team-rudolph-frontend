@@ -17,15 +17,19 @@ const Registration = ({setAuth}) => {
         "password": password,
         "re_password": retypePassword
       })
-        .then((data) => {
-          console.log(data);
-          if (data && data.data.auth_token) {
-            setAuth(username, data.data.auth_token)
-            setLoggedIn(true)
-          }
-        })
-        .catch((error) => setErrors(error.message))
-    } else {
+        
+      axios.post("https://questions-t10.herokuapp.com/auth/token/login/", {
+            "username": username,
+            "password": password
+          })
+          .then((data) => {
+            console.log(data)
+            if (data && data.data.auth_token) {
+              setAuth(username, data.data.auth_token)
+              setLoggedIn(true)
+            }
+          })
+        } else {
       alert("Password and Re-typed Password do not match!")
     }
   }
