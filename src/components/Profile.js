@@ -12,11 +12,12 @@ const Profile = ({ userImg, profileText, thisUser, token }) => {
   const handleAvatarSubmit = (event) => {
     event.preventDefault()
     console.log("click happens")
-    console.log(avatar)
-    axios.patch("https://questions-t10.herokuapp.com/auth/users/me", {
-      "image_url": `${avatar}`
+    console.log(token)
+    axios.patch("https://questions-t10.herokuapp.com/auth/users/me/", {
+      "image_url": avatar,
     }, {
       headers: {
+        'Content-Type': 'application/json',
         "Authorization": `Token ${token}`
       }
     })
@@ -29,10 +30,11 @@ const Profile = ({ userImg, profileText, thisUser, token }) => {
   const handleBioSubmit = (event) => {
     event.preventDefault()
     console.log("click happens")
-    axios.patch("https://questions-t10.herokuapp.com/auth/users/me", {
-      "bio": `${bio}`
+    axios.patch("https://questions-t10.herokuapp.com/auth/users/me/", {
+      "bio": bio
     }, {
       headers: {
+        'Content-Type': 'application/json',
         "Authorization": `Token ${token}`
       }
     })
