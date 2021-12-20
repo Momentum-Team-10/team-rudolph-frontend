@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export default function DownvoteAnswerButton({ token, questionId, answerId }) {
+export default function DownvoteAnswerButton({ token, questionId, answerId, setAnswerVotes }) {
     const handleSubmit = (event) => {
         const votingApi = `https://questions-t10.herokuapp.com/questions/${questionId}/answers/${answerId}/`
         event.preventDefault()
@@ -15,7 +15,7 @@ export default function DownvoteAnswerButton({ token, questionId, answerId }) {
         }
         ).then(response => {
             if (response) {
-            console.log(response)
+                setAnswerVotes(response.data.votes)
             }})
             .catch((error) => console.log(error.message))
         

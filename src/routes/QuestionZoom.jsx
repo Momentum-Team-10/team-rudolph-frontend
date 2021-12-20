@@ -19,7 +19,6 @@ export default function QuestionZoom({token}) {
             console.log(response.data.answers)
             setQuestionData(response.data)
             setAnswerData(response.data.answers)
-            setQuestionVotes(response.data.votes)
           })
       }, [params])
     return (
@@ -36,12 +35,11 @@ export default function QuestionZoom({token}) {
         <ResponseCard
             responseText={answer.body}
             key = {answer.pk}
-            responseUpvotes={24}
-            responseDownvotes={10}
             bestAnswer={true}
             questionId={questionData.pk}
             answerId= {answer.pk}
             token={token}
+            votes={answer.votes}
             >
             </ResponseCard>
         ))}
