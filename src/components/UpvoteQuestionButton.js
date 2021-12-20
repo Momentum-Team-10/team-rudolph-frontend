@@ -1,6 +1,7 @@
 import axios from 'axios';
+import { useState } from 'react';
 
-export default function UpvoteQuestionButton({ token, questionId }) {
+export default function UpvoteQuestionButton({ token, questionId, setQuestionVotes }) {
     const handleSubmit = (event) => {
         const votingApi = `https://questions-t10.herokuapp.com/questions/${questionId}/`
         event.preventDefault()
@@ -15,7 +16,7 @@ export default function UpvoteQuestionButton({ token, questionId }) {
         }
         ).then(response => {
             if (response) {
-            console.log(response)
+                setQuestionVotes(response.data.votes)
             }})
             .catch((error) => console.log(error.message))
         
