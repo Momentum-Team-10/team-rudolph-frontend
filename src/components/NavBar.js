@@ -1,9 +1,6 @@
-
-import { useState } from 'react';
-import Registration from '../routes/Registration';
 import { Link } from 'react-router-dom';
 
-export default function NavBar({ byCreatedAt, byHighestRated, userImg, user, setUser, logout, setAuth }) {
+export default function NavBar({ userImg, user, logout }) {
 
   return (
     <div className="nav-bar">
