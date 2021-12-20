@@ -19,6 +19,7 @@ export default function QuestionZoom({token}) {
             console.log(response.data.answers)
             setQuestionData(response.data)
             setAnswerData(response.data.answers)
+            setQuestionVotes(response.data.votes)
           })
       }, [params])
     return (
