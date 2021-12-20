@@ -35,7 +35,7 @@ const Registration = ({setAuth}) => {
   }
 
 
-  return ( loggedIn ? <Navigate to="/" /> :
+  return ( loggedIn ? <Navigate to="/aboutyou" /> :
     (<form onSubmit={handleSubmit}>
       <div className="username-register">
         <label htmlFor="usernameInput">Create Username</label>

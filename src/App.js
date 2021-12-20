@@ -9,6 +9,7 @@ import NewQuestion from './routes/NewQuestion';
 import UserPage from './routes/UserPage'
 import Login from './routes/Login'
 import Registration from './routes/Registration'
+import AboutYou from './routes/AboutYou'
 
 function App() {
   const [user, setUser] = useState('')
@@ -64,6 +65,10 @@ function App() {
         <Route
           path='/registration'
           element={<Registration setAuth={setAuth} />} 
+        />
+        <Route
+          path='/aboutyou'
+          element={<AboutYou token={token} />}
         />
       </Routes>
     </Router>
