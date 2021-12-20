@@ -38,7 +38,7 @@ function App() {
       <Routes>
         <Route
           path='/'
-          element={<Homepage />} />
+          element={<Homepage token={token}/>} />
         <Route
           path='questions/:questionId'
           element={<QuestionZoom token={token}/>} />

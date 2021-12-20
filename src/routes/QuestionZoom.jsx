@@ -28,6 +28,7 @@ export default function QuestionZoom({token}) {
             questionText={questionData.body}
             token={token}
             questionId={questionData.pk}
+            votes={questionData.votes}
             attachments='Attachment Placeholder'/>
         {answerData.map((answer) => (
         <ResponseCard
@@ -35,7 +36,11 @@ export default function QuestionZoom({token}) {
             key = {answer.pk}
             responseUpvotes={24}
             responseDownvotes={10}
-            bestAnswer={true}>
+            bestAnswer={true}
+            questionId={questionData.pk}
+            answerId= {answer.pk}
+            token={token}
+            votes={answer.votes}>
             </ResponseCard>
         ))}
         </>
