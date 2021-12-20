@@ -28,11 +28,11 @@ const UserPage = ({loggedInUser, user, token, updateAvatar}) => {
       }
     })
       .then(response => {
-        axios.get(`https://questions-t10.herokuapp.com/user/${response.data[0].id}/answers/`)
+        axios.get(`https://questions-t10.herokuapp.com/user/${response.data[0].pk}/answers/`)
           .then(response => {
             setUserAnswers(response.data)
           })
-        axios.get(`https://questions-t10.herokuapp.com/user/${response.data[0].id}/`)
+        axios.get(`https://questions-t10.herokuapp.com/user/${response.data[0].pk}/`)
           .then(response => {
             setUserImg(response.data.image_url)
             updateAvatar(response.data.image_url)
