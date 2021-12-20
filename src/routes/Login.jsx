@@ -28,7 +28,7 @@ const Login = ({setAuth, updateAvatar}) => {
             }
           })
             .then(response => {
-              axios.get(`https://questions-t10.herokuapp.com/user/${response.data[0].id}/`)
+              axios.get(`https://questions-t10.herokuapp.com/user/${response.data[0].pk}/`)
                 .then(response => {
                   console.log(response.data.image_url)
                   updateAvatar(response.data.image_url)

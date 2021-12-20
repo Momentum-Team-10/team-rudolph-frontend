@@ -24,7 +24,7 @@ const [questionList, setQuestionList] = useState([])
             questionTitle={question.title}
             votesCounter={question.votes}
             answersCounter={question.answers.length}
-            author={question.author}
+            author={question.author.username}
           />
         </Link>
       ))}</>
