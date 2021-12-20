@@ -4,7 +4,7 @@ import axios from 'axios'
 import QuestionCardZoom from '../components/QuestionCardZoom'
 import ResponseCard from '../components/ResponseCard'
 
-export default function QuestionZoom() {
+export default function QuestionZoom({token}) {
     let params = useParams()
     const [questionData, setQuestionData] = useState([])
     const [answerData, setAnswerData] = useState([])
@@ -26,6 +26,8 @@ export default function QuestionZoom() {
         <QuestionCardZoom
             questionTitle={questionData.title}
             questionText={questionData.body}
+            token={token}
+            questionId={questionData.pk}
             attachments='Attachment Placeholder'/>
         {answerData.map((answer) => (
         <ResponseCard
@@ -33,7 +35,8 @@ export default function QuestionZoom() {
             key = {answer.pk}
             responseUpvotes={24}
             responseDownvotes={10}
-            bestAnswer={true}></ResponseCard>
+            bestAnswer={true}>
+            </ResponseCard>
         ))}
         </>
     )
