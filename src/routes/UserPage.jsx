@@ -5,12 +5,13 @@ import axios from 'axios';
 import { Link } from "react-router-dom";
 import QuestionCard from "../components/QuestionCard";
 
-const UserPage = ({loggedInUser, user, token, updateAvatar}) => {
+const UserPage = ({loggedInUser, user, token, updateAvatar, userPk}) => {
 
   const [userQuestions, setUserQuestions] = useState([]);
   const [userAnswers, setUserAnswers] = useState([]);
   const [userImg, setUserImg] = useState('')
   const [userBio, setUserBio] = useState('')
+  const [username, setUsername] = useState('')
 
   const changeBio = (newBio) => setUserBio(newBio)
 
@@ -22,24 +23,18 @@ const UserPage = ({loggedInUser, user, token, updateAvatar}) => {
         setUserQuestions(response.data)
       })
     
-    axios.get('https://questions-t10.herokuapp.com/auth/users', {
-      headers: {
-        "Authorization": `Token ${token}`
-      }
+    axios.get(`https://questions-t10.herokuapp.com/user/${userPk}/answers/`)
+    .then(response => {
+        setUserAnswers(response.data)
     })
+    
+    axios.get(`https://questions-t10.herokuapp.com/user/${userPk}/`)
       .then(response => {
-        console.log(response.data[0])
-        axios.get(`https://questions-t10.herokuapp.com/user/${response.data[0].pk}/answers/`)
-          .then(response => {
-            setUserAnswers(response.data)
-          })
-        axios.get(`https://questions-t10.herokuapp.com/user/${response.data[0].pk}/`)
-          .then(response => {
-            setUserImg(response.data.image_url)
-            updateAvatar(response.data.image_url)
-            setUserBio(response.data.bio)
-          })
-        })
+        setUserImg(response.data.image_url)
+        setUserBio(response.data.bio)
+        console.log(response.data.username)
+        setUsername(response.data.username)
+      })
   }, [])
 
   return (
@@ -51,6 +46,7 @@ const UserPage = ({loggedInUser, user, token, updateAvatar}) => {
         token={token}
         changeBio={changeBio}
         updateAvatar={updateAvatar}
+        username={username}
       />
         {userQuestions.filter(question => question.author === user).map((filteredQuestion) => (
           <Link to={`/questions/${filteredQuestion.pk}`} key={filteredQuestion.pk}>

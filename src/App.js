@@ -15,6 +15,16 @@ function App() {
   const [user, setUser] = useState('')
   const [token, setToken] = useState('')
   const [avatar, setAvatar] = useState("")
+  const [pk, setPk] = useState('')
+  const [loggedUserPk, setLoggedUserPk] = useState('')
+
+  const getLoggedUserPk = (pk) =>
+    setLoggedUserPk(pk)
+
+  const getPk = (pk) => {
+    setPk(pk)
+    console.log(pk)
+  }
 
   const updateAvatar = (newImg) =>
     setAvatar(newImg)
@@ -46,25 +56,25 @@ function App() {
       <Routes>
         <Route
           path='/'
-          element={<Homepage />} />
+          element={<Homepage setPk={getPk}/>} />
         <Route
           path='questions/:questionId'
-          element={<QuestionZoom token={token}/>} />
+          element={<QuestionZoom token={token} setPk={getPk}/>} />
         <Route
           path='questions/newquestion'
           element={<NewQuestion token={token}/>}
           />
         <Route
           path='user/:userId'
-          element={<UserPage user={user} token={token} loggedInUser={user} updateAvatar={updateAvatar} />} 
+          element={<UserPage user={user} token={token} loggedInUser={user} updateAvatar={updateAvatar} userPk={pk} />} 
         />
         <Route
           path='/login'
-          element={<Login setAuth={setAuth} updateAvatar={updateAvatar} />} 
+          element={<Login setAuth={setAuth} updateAvatar={updateAvatar} setPk={getPk} getLoggedUserPk={getLoggedUserPk} />} 
         />
         <Route
           path='/registration'
-          element={<Registration setAuth={setAuth} updateAvatar={updateAvatar} />} 
+          element={<Registration setAuth={setAuth} updateAvatar={updateAvatar} setPk={getPk} getLoggedUserPk={getLoggedUserPk} />} 
         />
         <Route
           path='/aboutyou'
