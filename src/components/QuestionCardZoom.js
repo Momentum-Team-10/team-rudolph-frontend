@@ -3,7 +3,7 @@ import UpvoteQuestionButton from "./UpvoteQuestionButton"
 import DownvoteQuestionButton from "./DownvoteQuestionButton"
 
 export default function QuestionCardZoom(props) {
-    const {questionTitle, questionText, attachments, token, questionId} = props
+    const {questionTitle, questionText, attachments, token, questionId, votes} = props
 
     return (
         <div className='question-card-zoom'>
@@ -13,6 +13,7 @@ export default function QuestionCardZoom(props) {
                 token={token}
                 questionId={questionId}
             />
+            <span className='vote-score'>{votes}</span>
             <DownvoteQuestionButton
                 token={token}
                 questionId={questionId}

@@ -2,7 +2,7 @@ import UpvoteAnswerButton from "./UpvoteAnswerButton"
 import DownvoteAnswerButton from "./DownvoteAnswerButton"
 
 export default function ResponseCard(props) {
-    const { responseText, responseUpvotes, responseDownvotes, bestAnswer, questionId, answerId, token, votes } = props
+    const { responseText, bestAnswer, questionId, answerId, token, votes } = props
 
     return (
         <div className='response-card'>

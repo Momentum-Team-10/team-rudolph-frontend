@@ -10,6 +10,7 @@ export default function QuestionZoom({token}) {
     const [answerData, setAnswerData] = useState([])
     
     
+    
     useEffect(() => {
         const questionUrl = `https://questions-t10.herokuapp.com/questions/${params.questionId}`
         axios
