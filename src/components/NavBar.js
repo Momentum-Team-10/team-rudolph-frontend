@@ -20,9 +20,16 @@ export default function NavBar({ byCreatedAt, byHighestRated, userImg, user, set
       {(user !== '') ? (
         <div className="nav-div">
           <Link to={`/user/${user}`} key={user}>
-            <img src={userImg} alt="User Avatar" className="avatar" />
+            <img src={userImg === "" ? "https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png"
+                : userImg === null ? "https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png"
+                : userImg}
+              alt="User Avatar"
+              className="avatar" />
+            <p>{user}</p>
           </Link>
-          <button onClick={logout}>Log Out</button>
+          <Link to={"/"}>
+            <button onClick={logout}>Log Out</button>
+          </Link>
         </div>
         
         )

@@ -28,7 +28,7 @@ const Login = ({setAuth, updateAvatar}) => {
       })
       .catch((error) => setErrors(error.message))
     
-    axios.get('https://questions-t10.herokuapp.com/auth/users', {
+    axios.get('https://questions-t10.herokuapp.com/auth/users/', {
       headers: {
         "Authorization": `Token ${token}`
       }

@@ -2,7 +2,7 @@ import './App.css';
 import NavBar from './components/NavBar';
 import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
 import Homepage from './routes/Homepage'
 import QuestionZoom from './routes/QuestionZoom'
 import NewQuestion from './routes/NewQuestion';

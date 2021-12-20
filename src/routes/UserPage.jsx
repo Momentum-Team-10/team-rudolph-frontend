@@ -43,7 +43,7 @@ const UserPage = ({loggedInUser, user, token, updateAvatar}) => {
 
   return (
     <div>
-        <Profile userImg={userImg} profileText={userBio} thisUser={(loggedInUser === user) ? true : false} token={token} changeBio={changeBio} />
+        <Profile userImg={userImg === null ? "https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png" : userImg} profileText={userBio} thisUser={(loggedInUser === user) ? true : false} token={token} changeBio={changeBio} />
         {userQuestions.filter(question => question.author === user).map((filteredQuestion) => (
           <Link to={`/questions/${filteredQuestion.pk}`} key={filteredQuestion.pk}>
             <QuestionCard
