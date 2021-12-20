@@ -64,11 +64,11 @@ function App() {
         />
         <Route
           path='/registration'
-          element={<Registration setAuth={setAuth} />} 
+          element={<Registration setAuth={setAuth} updateAvatar={updateAvatar} />} 
         />
         <Route
           path='/aboutyou'
-          element={<AboutYou token={token} />}
+          element={<AboutYou token={token} updateAvatar={updateAvatar} />}
         />
       </Routes>
     </Router>

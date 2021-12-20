@@ -2,7 +2,7 @@ import axios from 'axios';
 import { useState } from 'react';
 import  { Navigate } from 'react-router'
 
-const Registration = ({setAuth}) => {
+const Registration = ({setAuth, updateAvatar}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [retypePassword, setRetypePassword] = useState('');
@@ -27,6 +27,7 @@ const Registration = ({setAuth}) => {
             if (data && data.data.auth_token) {
               setAuth(username, data.data.auth_token)
               setLoggedIn(true)
+              updateAvatar("")
             }
           })
         } else {

@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 
-const Profile = ({ userImg, profileText, thisUser, token, changeBio }) => {
+const Profile = ({ userImg, profileText, updateAvatar, token, changeBio }) => {
   
   const [expAvatar, setExpAvatar] = useState(false)
   const [expBio, setExpBio] = useState(false)
@@ -23,6 +23,7 @@ const Profile = ({ userImg, profileText, thisUser, token, changeBio }) => {
       .then((data) => {
         console.log(data)
         setAvatar(avatar)
+        updateAvatar(avatar)
       })
       .catch((error) => alert(error.message))
   }
