@@ -12,6 +12,7 @@ export default function QuestionZoom({token, loggedUserPk}) {
     const [questionVotes, setQuestionVotes] = useState()
     const [bestAnswer, setBestAnswer] = useState()
     const [questionAuthorUsername, setQuestionAuthorUsername] = useState()
+    const [questionAuthorId, setQuestionAuthorId] = useState()
     
     useEffect(() => {
         const questionUrl = `https://questions-t10.herokuapp.com/questions/${params.questionId}`
@@ -20,8 +21,9 @@ export default function QuestionZoom({token, loggedUserPk}) {
           .then((response) => {
             console.log(response.data)
             console.log(response.data.answers)
-            console.log(response.data.author.username)
+            console.log(response.data.author.pk)
             setQuestionAuthorUsername(response.data.author.username)
+            setQuestionAuthorId(response.data.author.pk)
             setQuestionData(response.data)
             setAnswerData(response.data.answers)
             setQuestionVotes(response.data.votes)
@@ -38,6 +40,8 @@ export default function QuestionZoom({token, loggedUserPk}) {
             votes={questionVotes}
             setQuestionVotes={setQuestionVotes}
             author={questionAuthorUsername}
+            loggedUserPk={loggedUserPk}
+            questionAuthorId={questionAuthorId}
             attachments='Attachment Placeholder'/>
         {answerData.map((answer) => (
         <ResponseCard
@@ -48,7 +52,7 @@ export default function QuestionZoom({token, loggedUserPk}) {
             answerId= {answer.pk}
             token={token}
             votes={answer.votes}
-            questionAuthorId={questionData.author.pk}
+            questionAuthorId={questionAuthorId}
             loggedUserPk={loggedUserPk}
             author={answer.author.username}
             setBestAnswer={setBestAnswer}
