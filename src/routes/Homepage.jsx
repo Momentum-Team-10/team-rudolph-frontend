@@ -19,12 +19,14 @@ const [questionList, setQuestionList] = useState([])
 
   return (
     <div className="homepage-div">
+        <Link to={"/questions/newquestion/"}>
+        <button classname="btn btn-info new-question-button">New Question</button>
+        </Link>
       <div className="filters">
         <button className="btn btn-info filter-buttons">Most Recent</button>
         <button className="btn btn-info filter-buttons">Highest Rated</button>
       </div>
       {questionList.map((question) => (
-          <Link to={`/questions/${question.pk}`} key={question.pk}>
             <QuestionCard
               questionTitle={question.title}
               votesCounter={question.votes}
@@ -35,7 +37,6 @@ const [questionList, setQuestionList] = useState([])
               token={token}
               votes={question.votes}
             />
-          </Link>
         ))}
     </div>
   )
