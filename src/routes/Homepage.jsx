@@ -36,6 +36,7 @@ const [questionList, setQuestionList] = useState([])
               questionId={question.pk}
               token={token}
               votes={question.votes}
+              key={question.pk}
             />
         ))}
     </div>
