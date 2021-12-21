@@ -15,7 +15,7 @@ export default function DeleteQuestionButton({ token, questionId }) {
         }
         ).then(response => {
             if (response) {
-                return (<Navigate replace to='/'/>)
+                return (<Navigate to='/'/>)
             
             }})
             .catch((error) => console.log(error.message))
