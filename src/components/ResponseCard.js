@@ -5,7 +5,7 @@ import DeleteAnswerButton from "./DeleteAnswerButton"
 import { useState } from "react"
 
 export default function ResponseCard(props) {
-    const { responseText, bestAnswer, setBestAnswer, questionId, answerId, token, votes, questionAuthorId, loggedUserPk, author, answerAuthorId, setAnswerData } = props
+    const { responseText, bestAnswer, setBestAnswer, questionId, answerId, token, votes, questionAuthorId, loggedUserPk, author, answerAuthorId, setAnswerData, setNumAnswers } = props
     const [answerVotes, setAnswerVotes] = useState(votes)
 
     return (
@@ -33,7 +33,7 @@ export default function ResponseCard(props) {
                     <DownvoteAnswerButton questionId={questionId} answerId={answerId} token={token} setAnswerVotes={setAnswerVotes}/>
                 </div>
                 {(answerAuthorId === loggedUserPk) ?
-                <DeleteAnswerButton questionId={questionId} token={token} answerId={answerId} setAnswerData={setAnswerData}/>
+                <DeleteAnswerButton questionId={questionId} token={token} answerId={answerId} setAnswerData={setAnswerData} setNumAnswers={setNumAnswers}/>
                 :
                 ''}
             </div>

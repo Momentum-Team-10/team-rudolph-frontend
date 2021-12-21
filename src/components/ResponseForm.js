@@ -1,7 +1,7 @@
 import { useState } from 'react'
 import axios from 'axios'
 
-export default function ResponseForm({ token, questionId, setAnswerData }) {
+export default function ResponseForm({ token, questionId, setAnswerData, setNumAnswers }) {
     const [responseBody, setResponseBody] = useState('')
 
     const handleSubmit = (event) => {
@@ -23,6 +23,7 @@ export default function ResponseForm({ token, questionId, setAnswerData }) {
                 .get(`https://questions-t10.herokuapp.com/questions/${questionId}/`)
                 .then(response => {
                     setAnswerData(response.data.answers)
+                    setNumAnswers(response.data.answers.length)
                 })
                 return response
                 
