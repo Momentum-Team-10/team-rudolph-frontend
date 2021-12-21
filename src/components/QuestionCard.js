@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
 export default function QuestionCard(props) {
-    const {questionTitle, votes, answersCounter, author} = props
+    const {questionTitle, votes, answersCounter, author, pk} = props
 
     return (
         <div className='question-card'>
@@ -11,7 +11,7 @@ export default function QuestionCard(props) {
                 <Link to={`user/${author}`} state={{userPk: pk}}>
                     <div>Author: {author}</div>
                 </Link>   
-                <div>Votes: {votesCounter}</div>
+                <div>Votes: {votes}</div>
                 {answersCounter && <div>Answers: {answersCounter}</div>}
             </div>
             <div className='lower-right-placeholder'>Misc Info</div>
