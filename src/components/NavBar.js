@@ -5,10 +5,6 @@ export default function NavBar({ userImg, user, logout, loggedUserPk }) {
   return (
     <div className="nav-bar">
       <div className="nav-div">
-        <button>Most Recent</button>
-        <button>Highest Rated</button>
-      </div>
-      <div className="nav-div">
         <Link to="/">
           <h1 className="sitename">Yes, Chef!</h1>
           <h3>A Site for the Culinarily Curious</h3>

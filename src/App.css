@@ -39,7 +39,7 @@
 
 .nav-bar {
   display: grid;
-  grid-template-columns: 1fr 1fr 1fr;
+  grid-template-columns: 5fr 1fr;
 }
 
 .nav-div {
@@ -66,9 +66,10 @@
   display: grid;
   grid-template-columns: 15% 75% 10%;
   grid-template-rows: 10% 70% 20%;
-  width: 80%;
+  align-self: center;
+  width: 2000px;
   padding: 8px;
-  margin: 8px;
+  margin: 8px 30px 8px 30px;
 }
 
 .question-card .question-title {
@@ -128,4 +129,20 @@
 
 .user-profile{
   display: flex;
+  justify-content: space-around;
+}
+
+.homepage-div{
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.filter-buttons{
+  display: flex;
+}
+
+.user-page-avatar{
+  height: 400px;
 }

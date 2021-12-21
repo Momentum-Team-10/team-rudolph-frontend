@@ -5,7 +5,7 @@ export default function QuestionCard(props) {
     const {questionTitle, votes, answersCounter, author, pk} = props
 
     return (
-        <div className='question-card'>
+        <div className='question-card container'>
             <h3 className='question-title'>{questionTitle}</h3>
             <div className='question-card-counters'>
                 <Link to={`user/${author}`} state={{userPk: pk}}>

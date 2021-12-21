@@ -49,7 +49,7 @@ const Profile = ({ userImg, profileText, updateAvatar, token, changeBio, thisUse
   return (
     <div className="user-profile">
       <div>
-        <img src={userImg} alt="User Avatar" />
+        <img src={userImg} alt="User Avatar" className="user-page-avatar" />
         <p>{username}</p>
         {thisUser && <button onClick={() => (expAvatar ? setExpAvatar(false) : setExpAvatar(true))}>Edit Avatar</button>}
         {expAvatar && (
