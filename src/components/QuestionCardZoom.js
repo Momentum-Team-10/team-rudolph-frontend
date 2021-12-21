@@ -6,7 +6,7 @@ export default function QuestionCardZoom(props) {
     const {questionTitle, questionText, attachments, token, questionId, votes, setQuestionVotes, author} = props
 
     return (
-        <div className='question-card-zoom'>
+        <div className='question-card-zoom card'>
             <div>{author}</div>
             <h3 className='question-zoom-title'>{questionTitle}</h3>
             <p className='question-zoom-text'>{questionText}</p>

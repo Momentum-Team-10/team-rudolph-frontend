@@ -46,8 +46,8 @@ const Login = ({setAuth, updateAvatar, setPk, getLoggedUserPk}) => {
       (<form onSubmit={handleSubmit}>
         {/* conditionally show error message */}
         {errors && <div className="bg-red white pa3">{errors}</div>}
-        <div className="mv2">
-          <label className="db mb2" htmlFor="username">
+        <div className="mb-3 container">
+          <label className="form-label" htmlFor="username">
             Username
           </label>
           <input
@@ -55,11 +55,12 @@ const Login = ({setAuth, updateAvatar, setPk, getLoggedUserPk}) => {
             id="username"
             value={username}
             onChange={(event) => setUsername(event.target.value)}
+            className="form-control"
           />
         </div>
   
-        <div className="mv2">
-          <label className="db mb2" htmlFor="password">
+        <div className="mb-3 container">
+          <label className="form-label" htmlFor="password">
             Password
           </label>
           <input
@@ -67,12 +68,14 @@ const Login = ({setAuth, updateAvatar, setPk, getLoggedUserPk}) => {
             id="password"
             value={password}
             onChange={(event) => setPassword(event.target.value)}
+            className="form-control"
           />
         </div>
-        <div className="mv2">
-          <button type="submit">Log In</button>
+        <div className="mv2 container">
+          <button type="submit" className="btn btn-primary">Log In</button>
         </div>
-      </form>)
+      </form>
+      )
   )
 }
 
