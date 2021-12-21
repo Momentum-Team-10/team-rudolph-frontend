@@ -32,8 +32,8 @@ export default function AboutYou({ token, updateAvatar }) {
     <>
     <h2>Tell us About Yourself!</h2>
     <form onSubmit={handleSubmit}>
-      <div className="mv2">
-        <label className="db mb2" htmlFor="avatar">
+      <div className="mb-3 container">
+        <label className="form-label" htmlFor="avatar">
           Link an Image to set your Avatar!
         </label>
         <input
@@ -41,10 +41,11 @@ export default function AboutYou({ token, updateAvatar }) {
           id="avatar"
           value={avatar}
           onChange={(event) => setAvatar(event.target.value)}
+          className='form-control'
         />
         </div>
-      <div className="mv2">
-        <label className="db mb2" htmlFor="username">
+      <div className="mb-3 container">
+        <label className="form-label" htmlFor="username">
           Tell us about yourself!
         </label>
         <input
@@ -52,10 +53,11 @@ export default function AboutYou({ token, updateAvatar }) {
           id="username"
           value={bio}
           onChange={(event) => setBio(event.target.value)}
+          className='form-control'
         />
         </div>
         <Link to={"/"}>
-          <button type="submit">Submit</button>  
+          <button type="submit" className='btn btn-primary'>Submit</button>  
         </Link>
     </form>
     </>
