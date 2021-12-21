@@ -1,9 +1,10 @@
 import FavButton from "./FavButton"
+import DeleteQuestionButton from "./DeleteQuestionButton"
 import UpvoteQuestionButton from "./UpvoteQuestionButton"
 import DownvoteQuestionButton from "./DownvoteQuestionButton"
 
 export default function QuestionCardZoom(props) {
-    const {questionTitle, questionText, attachments, token, questionId, votes, setQuestionVotes, author} = props
+    const {questionTitle, questionText, attachments, token, questionId, votes, setQuestionVotes, author, questionAuthorId, loggedUserPk} = props
 
     return (
         <div className='question-card-zoom card'>
@@ -25,6 +26,14 @@ export default function QuestionCardZoom(props) {
                 token={token}
                 questionId={questionId}
                 />
+            {(questionAuthorId === loggedUserPk) ? 
+            <DeleteQuestionButton
+                token={token}
+                questionId={questionId}
+            />
+            :
+            ''
+            }
             {/* <div className='attachments'>Attachments are mapped out here:
                 <>{attachments}</>
             </div> */}

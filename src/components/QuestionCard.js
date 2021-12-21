@@ -1,12 +1,13 @@
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
 
 export default function QuestionCard(props) {
-    const {questionTitle, votesCounter, answersCounter, author, pk} = props
+    const {questionTitle, votesCounter, answersCounter, author, pk, questionId} = props
 
     return (
         <div className='question-card container card'>
-            <h3 className='question-title'>{questionTitle}</h3>
+            <Link className='question-card-title-link' to={`/questions/${questionId}`} key={questionId}>
+                <h3 className='question-card-title'>{questionTitle}</h3>
+            </Link>
             <div className='question-card-counters'>
                 <Link to={`user/${author}`} state={{userPk: pk}}>
                     <div className='author-link'>Author: {author}</div>
