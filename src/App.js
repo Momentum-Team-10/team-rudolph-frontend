@@ -51,10 +51,10 @@ function App() {
       <Routes>
         <Route
           path='/'
-          element={<Homepage token={token}/>} />
+          element={<Homepage token={token} />} />
         <Route
           path='questions/:questionId'
-          element={<QuestionZoom token={token} />} />
+          element={<QuestionZoom token={token} loggedUserPk={loggedUserPk}/>} />
         <Route
           path='questions/newquestion'
           element={<NewQuestion token={token}/>}
