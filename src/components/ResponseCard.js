@@ -7,7 +7,7 @@ export default function ResponseCard(props) {
     const [answerVotes, setAnswerVotes] = useState(votes)
 
     return (
-        <div className='response-card'>
+        <div className='response-card card'>
             <p className='response-text'>{responseText}</p>
             <div className='best-answer-and-vote-bar'>
                 {bestAnswer ?

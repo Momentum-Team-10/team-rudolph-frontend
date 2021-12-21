@@ -19,9 +19,9 @@ const [questionList, setQuestionList] = useState([])
 
   return (
     <div className="homepage-div">
-      <div className="filter-buttons">
-        <button>Most Recent</button>
-        <button>Highest Rated</button>
+      <div className="filters">
+        <button className="btn btn-info filter-buttons">Most Recent</button>
+        <button className="btn btn-info filter-buttons">Highest Rated</button>
       </div>
       {questionList.map((question) => (
           <Link to={`/questions/${question.pk}`} key={question.pk}>

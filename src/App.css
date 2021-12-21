@@ -1,3 +1,7 @@
+body {
+  background-color: #D39800;
+}
+
 .App {
   text-align: center;
 }
@@ -49,17 +53,27 @@
 }
 
 .avatar {
-  width: 90px;
   margin: auto;
+  vertical-align: middle;
+  height: 80px;
+  border-radius: 50%;
+  border: solid;
+  border-width: 2px;
+  border-color:#456990;
 }
 
 .sitename {
   margin: auto;
+  text-align: center;
+  color: #D31B0D;
+  font-size: 60px;
+  font-family: 'Pushster', cursive;
 }
 
-.question-card, .question-card-zoom, .response-card {
-  border-width: 1px;
-  border-style: dotted;
+.site-sub {
+  margin: auto;
+  text-align: center;
+  color: #D31B0D;
 }
 
 .question-card {
@@ -70,21 +84,33 @@
   width: 2000px;
   padding: 8px;
   margin: 8px 30px 8px 30px;
+  background-color: #77ACA2;
+  color: #280004;
+  border: solid;
+  border-color: #456990;
+  border-width: 3px;
 }
 
 .question-card .question-title {
   margin: auto;
   grid-column-start: 2;
   grid-row-start: 2;
+  color: #280004;
 }
 
 .question-card .lower-right-placeholder {
   grid-row: 3;
   grid-column: 3;
+  color: #280004;
 }
 
 .question-card .question-card-counters {
   grid-row-start: 2;
+  color: #280004;
+}
+
+.author-link {
+  color: #280004;
 }
 
 .question-card-zoom {
@@ -95,6 +121,10 @@
   margin: 8px;
   text-align: center;
   vertical-align: top;
+  background-color: #77ACA2;
+  border: solid;
+  border-color: #456990;
+  border-width: 3px;
 }
 
 .response-card {
@@ -106,6 +136,10 @@
   display: grid;
   grid-template-columns: 25% 75%;
   grid-template-rows: 25% 50% 25%;
+  background-color: #77ACA2;
+  border: solid;
+  border-color: #456990;
+  border-width: 3px;
 }
 
 .response-card .response-text {
@@ -127,6 +161,10 @@
   margin-right: 5px;
 }
 
+.title {
+  margin-left: 300px;
+}
+
 .user-profile{
   display: flex;
   justify-content: space-around;
@@ -139,10 +177,32 @@
   align-items: center;
 }
 
-.filter-buttons{
+.filters {
   display: flex;
+}
+
+.filter-buttons {
+  margin: 15px;
+  background-color: #77ACA2 !important;
+  border: solid;
+  border-width: 3px;
+  border-color:#456990;
+
 }
 
 .user-page-avatar{
   height: 400px;
+  border-radius: 50%;
+  border: solid;
+  border-width: 2px;
+  border-color:#456990;
+}
+
+.user-name {
+  color:#D31B0D;
+  padding: 5px;
+}
+
+a {
+  text-decoration: none !important;
 }
