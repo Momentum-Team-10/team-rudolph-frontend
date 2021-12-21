@@ -2,10 +2,10 @@ import Profile from "../components/Profile"
 import ResponseCard from "../components/ResponseCard";
 import { useState, useEffect } from 'react';
 import axios from 'axios';
-import { Link } from "react-router-dom";
+import { Link, useLocation } from "react-router-dom";
 import QuestionCard from "../components/QuestionCard";
 
-const UserPage = ({loggedInUser, user, token, updateAvatar, userPk}) => {
+const UserPage = ({loggedInUser, user, token, updateAvatar, loggedUserPk}) => {
 
   const [userQuestions, setUserQuestions] = useState([]);
   const [userAnswers, setUserAnswers] = useState([]);
@@ -14,26 +14,19 @@ const UserPage = ({loggedInUser, user, token, updateAvatar, userPk}) => {
   const [username, setUsername] = useState('')
 
   const changeBio = (newBio) => setUserBio(newBio)
+  const location = useLocation()
+  const userPk = location.state.userPk
 
   useEffect(() => {
-    const questionsUrl = 'https://questions-t10.herokuapp.com/questions/'
-    axios
-      .get(questionsUrl)
-      .then((response) => {
-        setUserQuestions(response.data)
-      })
-    
-    axios.get(`https://questions-t10.herokuapp.com/user/${userPk}/answers/`)
-    .then(response => {
-        setUserAnswers(response.data)
-    })
-    
     axios.get(`https://questions-t10.herokuapp.com/user/${userPk}/`)
       .then(response => {
         setUserImg(response.data.image_url)
         setUserBio(response.data.bio)
-        console.log(response.data.username)
         setUsername(response.data.username)
+        setUserAnswers(response.data.answers)
+        setUserQuestions(response.data.questions)
+        console.log(username)
+        console.log(loggedInUser)
       })
   }, [])
 
@@ -42,18 +35,17 @@ const UserPage = ({loggedInUser, user, token, updateAvatar, userPk}) => {
       <Profile
         userImg={userImg === null ? "https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png" : userImg}
         profileText={userBio}
-        thisUser={(loggedInUser === user) ? true : false}
+        thisUser={(user === username) ? true : false}
         token={token}
         changeBio={changeBio}
         updateAvatar={updateAvatar}
         username={username}
       />
-        {userQuestions.filter(question => question.author === user).map((filteredQuestion) => (
+        {userQuestions.map((filteredQuestion) => (
           <Link to={`/questions/${filteredQuestion.pk}`} key={filteredQuestion.pk}>
             <QuestionCard
               questionTitle={filteredQuestion.title}
               votesCounter={filteredQuestion.votes}
-              answersCounter={filteredQuestion.answers.length}
               author={filteredQuestion.author}
           />
         </Link>

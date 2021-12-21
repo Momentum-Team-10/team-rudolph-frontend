@@ -30,7 +30,7 @@ const Login = ({setAuth, updateAvatar, setPk, getLoggedUserPk}) => {
             .then(response => {
               axios.get(`https://questions-t10.herokuapp.com/user/${response.data[0].pk}/`)
                 .then(response => {
-                  setPk(response.data.pk)
+                  console.log(response.data.pk)
                   getLoggedUserPk(response.data.pk)
                   updateAvatar(response.data.image_url)
                 })
