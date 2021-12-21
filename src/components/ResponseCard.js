@@ -3,15 +3,26 @@ import DownvoteAnswerButton from "./DownvoteAnswerButton"
 import SetBestAnswerButton from "./SetBestAnswerButton"
 import DeleteAnswerButton from "./DeleteAnswerButton"
 import EditAnswerButton from "./EditAnswerButton"
+import EditAnswerForm from "./EditAnswerForm"
 import { useState } from "react"
 
 export default function ResponseCard(props) {
     const { responseText, bestAnswer, setBestAnswer, questionId, answerId, token, votes, questionAuthorId, loggedUserPk, author, answerAuthorId, setAnswerData, setNumAnswers } = props
     const [answerVotes, setAnswerVotes] = useState(votes)
+    const [answerEditMode, setAnswerEditMode] = useState(false)
 
     return (
         <div className='response-card card'>
-            <p className='response-text'>{responseText}</p>
+            {(answerEditMode === true) ?
+                <EditAnswerForm
+                    token={token}
+                    questionId={questionId}
+                    answerId={answerId}
+                    setAnswerEditMode={setAnswerEditMode}
+                    answerText={responseText}
+                /> :
+                <p className='response-text'>{responseText}</p>
+            } 
             <div className='best-answer-and-vote-bar'>
                 <div>{author}</div>
                 {(bestAnswer === answerId) ?
@@ -34,7 +45,7 @@ export default function ResponseCard(props) {
                     <DownvoteAnswerButton questionId={questionId} answerId={answerId} token={token} setAnswerVotes={setAnswerVotes}/>
                 </div>
                 {(answerAuthorId === loggedUserPk) ?
-                <EditAnswerButton questionId={questionId} token={token} answerId={answerId} setAnswerData={setAnswerData} setNumAnswers={setNumAnswers}/>
+                <EditAnswerButton questionId={questionId} token={token} answerId={answerId} setAnswerData={setAnswerData} setNumAnswers={setNumAnswers} setAnswerEditMode={setAnswerEditMode}/>
                 :
                 ''}
                 {(answerAuthorId === loggedUserPk) ?

@@ -42,8 +42,8 @@ export default function EditQuestionForm({ token, questionId, setQuestionEditMod
                     onChange={(event) => handleChange('questionBody', event)}
                 />
                 <button className='submit-button'>Submit Changes</button>
-                <button className='cancel-button' onClick={() => setQuestionEditMode(false)}>Cancel</button>
             </form>
+            <button className='cancel-button' onClick={() => setQuestionEditMode(false)}>Cancel</button>
         </div>
 
     )
