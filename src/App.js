@@ -1,8 +1,7 @@
 import './App.css';
 import NavBar from './components/NavBar';
-import { useEffect, useState } from 'react';
 import axios from 'axios';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Homepage from './routes/Homepage'
 import QuestionZoom from './routes/QuestionZoom'
 import NewQuestion from './routes/NewQuestion';
@@ -10,12 +9,13 @@ import UserPage from './routes/UserPage'
 import Login from './routes/Login'
 import Registration from './routes/Registration'
 import AboutYou from './routes/AboutYou'
+import useLocalStorageState from 'use-local-storage-state';
 
 function App() {
-  const [user, setUser] = useState('')
-  const [token, setToken] = useState('')
-  const [avatar, setAvatar] = useState("")
-  const [loggedUserPk, setLoggedUserPk] = useState('')
+  const [user, setUser] = useLocalStorageState("yesChefUser", '');
+  const [token, setToken] = useLocalStorageState('yesChefAuthToken', null);
+  const [avatar, setAvatar] = useLocalStorageState('yesChefUserAvatar', "");
+  const [loggedUserPk, setLoggedUserPk] = useLocalStorageState('yesChefUserPk', '');
 
   const getLoggedUserPk = (pk) =>
     setLoggedUserPk(pk)
