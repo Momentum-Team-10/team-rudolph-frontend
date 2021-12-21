@@ -10,6 +10,7 @@ export default function QuestionZoom({token, loggedUserPk}) {
     const [questionData, setQuestionData] = useState([])
     const [answerData, setAnswerData] = useState([])
     const [questionVotes, setQuestionVotes] = useState()
+    const [bestAnswer, setBestAnswer] = useState()
     const [questionAuthorUsername, setQuestionAuthorUsername] = useState()
     
     useEffect(() => {
@@ -24,6 +25,7 @@ export default function QuestionZoom({token, loggedUserPk}) {
             setQuestionData(response.data)
             setAnswerData(response.data.answers)
             setQuestionVotes(response.data.votes)
+            setBestAnswer(response.data.answered)
           })
       }, [params])
     return (
@@ -41,7 +43,7 @@ export default function QuestionZoom({token, loggedUserPk}) {
         <ResponseCard
             responseText={answer.body}
             key = {answer.pk}
-            bestAnswer={questionData.answered}
+            bestAnswer={bestAnswer}
             questionId={questionData.pk}
             answerId= {answer.pk}
             token={token}
@@ -49,6 +51,7 @@ export default function QuestionZoom({token, loggedUserPk}) {
             questionAuthorId={questionData.author.pk}
             loggedUserPk={loggedUserPk}
             author={answer.author.username}
+            setBestAnswer={setBestAnswer}
             >
             </ResponseCard>
         ))}

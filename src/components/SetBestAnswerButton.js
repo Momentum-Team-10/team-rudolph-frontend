@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 
-export default function SetBestAnswerButton({ token, questionId, answerId }) {
+export default function SetBestAnswerButton({ token, questionId, answerId, setBestAnswer }) {
     const handleSubmit = (event) => {
         const bestAnswerApi = `https://questions-t10.herokuapp.com/questions/${questionId}/`
         event.preventDefault()
@@ -16,7 +16,7 @@ export default function SetBestAnswerButton({ token, questionId, answerId }) {
         }
         ).then(response => {
             if (response) {
-                return response
+                setBestAnswer(response.data.answered)
             }})
             .catch((error) => console.log(error.message))
         

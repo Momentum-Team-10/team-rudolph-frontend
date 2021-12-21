@@ -4,7 +4,7 @@ import SetBestAnswerButton from "./SetBestAnswerButton"
 import { useState } from "react"
 
 export default function ResponseCard(props) {
-    const { responseText, bestAnswer, questionId, answerId, token, votes, questionAuthorId, loggedUserPk, author } = props
+    const { responseText, bestAnswer, setBestAnswer, questionId, answerId, token, votes, questionAuthorId, loggedUserPk, author } = props
     const [answerVotes, setAnswerVotes] = useState(votes)
 
     return (
@@ -22,6 +22,7 @@ export default function ResponseCard(props) {
                         questionId={questionId}
                         answerId={answerId}
                         token={token}
+                        setBestAnswer={setBestAnswer}
                     />
                     :
                     ''}
