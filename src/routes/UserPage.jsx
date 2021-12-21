@@ -12,10 +12,9 @@ const UserPage = ({loggedInUser, user, token, updateAvatar, loggedUserPk}) => {
   const [userImg, setUserImg] = useState('')
   const [userBio, setUserBio] = useState('')
   const [username, setUsername] = useState('')
+  const [userPk, setUserPk] = useState(useLocation().state.userPk)
 
   const changeBio = (newBio) => setUserBio(newBio)
-  const location = useLocation()
-  const userPk = location.state.userPk
 
   useEffect(() => {
     axios.get(`https://questions-t10.herokuapp.com/user/${userPk}/`)
