@@ -27,16 +27,15 @@ export default function QuestionCardZoom(props) {
                 token={token}
                 questionId={questionId}
                 />
+            {((questionAuthorId === loggedUserPk) && (numAnswers === 0)) ?
+            <EditQuestionButton></EditQuestionButton>
+            : ''
+            }
             {(questionAuthorId === loggedUserPk) ? 
             <DeleteQuestionButton
                 token={token}
                 questionId={questionId}
             />
-            :
-            ''
-            }
-            {((questionAuthorId === loggedUserPk) && (numAnswers === 0)) ?
-            <EditQuestionButton></EditQuestionButton>
             : ''
             }
             {/* <div className='attachments'>Attachments are mapped out here:

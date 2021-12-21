@@ -2,6 +2,7 @@ import UpvoteAnswerButton from "./UpvoteAnswerButton"
 import DownvoteAnswerButton from "./DownvoteAnswerButton"
 import SetBestAnswerButton from "./SetBestAnswerButton"
 import DeleteAnswerButton from "./DeleteAnswerButton"
+import EditAnswerButton from "./EditAnswerButton"
 import { useState } from "react"
 
 export default function ResponseCard(props) {
@@ -32,6 +33,10 @@ export default function ResponseCard(props) {
                     <span className='vote-score'>{answerVotes}</span>
                     <DownvoteAnswerButton questionId={questionId} answerId={answerId} token={token} setAnswerVotes={setAnswerVotes}/>
                 </div>
+                {(answerAuthorId === loggedUserPk) ?
+                <EditAnswerButton questionId={questionId} token={token} answerId={answerId} setAnswerData={setAnswerData} setNumAnswers={setNumAnswers}/>
+                :
+                ''}
                 {(answerAuthorId === loggedUserPk) ?
                 <DeleteAnswerButton questionId={questionId} token={token} answerId={answerId} setAnswerData={setAnswerData} setNumAnswers={setNumAnswers}/>
                 :
