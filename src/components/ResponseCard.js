@@ -20,6 +20,7 @@ export default function ResponseCard(props) {
                     answerId={answerId}
                     setAnswerEditMode={setAnswerEditMode}
                     answerText={responseText}
+                    setAnswerData={setAnswerData}
                 /> :
                 <p className='response-text'>{responseText}</p>
             } 

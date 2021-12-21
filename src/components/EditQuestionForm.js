@@ -2,7 +2,7 @@ import { useState } from 'react'
 import axios from 'axios'
 
 export default function EditQuestionForm({ token, questionId, setQuestionEditMode, questionText, setQuestionText }) {
-    const [questionBody, setQuestionBody] = useState('')
+    const [questionBody, setQuestionBody] = useState(questionText)
 
     const handleSubmit = (event) => {
         const questionEditApi = `https://questions-t10.herokuapp.com/questions/${questionId}/`
@@ -33,15 +33,14 @@ export default function EditQuestionForm({ token, questionId, setQuestionEditMod
     return (
         <div className='form-container'>
             <form className='question-edit-form' onSubmit={handleSubmit}>
-                <label className='form-label'>Question Details: </label>
+                <label className='form-label'>Edit Details: </label>
                 <textarea
                     className='textarea-field'
                     type='text'
-                    placeholder={questionText}
                     value={questionBody}
                     onChange={(event) => handleChange('questionBody', event)}
                 />
-                <button className='submit-button'>Submit Changes</button>
+                <button className='submit-button'>Save Changes</button>
             </form>
             <button className='cancel-button' onClick={() => setQuestionEditMode(false)}>Cancel</button>
         </div>

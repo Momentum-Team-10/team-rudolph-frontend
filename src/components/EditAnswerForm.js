@@ -1,11 +1,11 @@
 import { useState } from 'react'
 import axios from 'axios'
 
-export default function EditAnswerForm({ token, questionId, answerId, setAnswerData, setNumAnswers, answerText, setAnswerEditMode }) {
-    const [responseBody, setResponseBody] = useState('')
+export default function EditAnswerForm({ token, questionId, answerId, setAnswerData, answerText, setAnswerEditMode }) {
+    const [responseBody, setResponseBody] = useState(answerText)
 
     const handleSubmit = (event) => {
-        const responseApi = `https://questions-t10.herokuapp.com/questions/${questionId}/answers/${answerId}`
+        const responseApi = `https://questions-t10.herokuapp.com/questions/${questionId}/answers/${answerId}/`
         event.preventDefault()
         if (responseBody !== '') {
             axios.patch(responseApi, {
@@ -23,7 +23,7 @@ export default function EditAnswerForm({ token, questionId, answerId, setAnswerD
                 .get(`https://questions-t10.herokuapp.com/questions/${questionId}/`)
                 .then(response => {
                     setAnswerData(response.data.answers)
-                    setNumAnswers(response.data.answers.length)
+                    setAnswerEditMode(false)
                 })
                 return response
                 
@@ -40,15 +40,14 @@ export default function EditAnswerForm({ token, questionId, answerId, setAnswerD
     return (
         <div className='form-container'>
             <form className='response-form' onSubmit={handleSubmit}>
-                <label className='form-label'>Add response: </label>
+                <label className='form-label'>Edit response: </label>
                 <textarea
                     className='textarea-field'
                     type='text'
-                    placeholder={answerText}
                     value={responseBody}
                     onChange={(event) => handleChange('responseBody', event)}
                 />
-                <button className='submit-button'>Submit</button>
+                <button className='submit-button'>Save Changes</button>
             </form>
             <button className='cancel-button' onClick={() => setAnswerEditMode(false)}>Cancel</button>
         </div>
