@@ -3,6 +3,7 @@ import { useEffect, useState } from 'react'
 import axios from 'axios'
 import QuestionCardZoom from '../components/QuestionCardZoom'
 import ResponseCard from '../components/ResponseCard'
+import ResponseForm from '../components/ResponseForm'
 
 export default function QuestionZoom({token}) {
     let params = useParams()
@@ -44,6 +45,11 @@ export default function QuestionZoom({token}) {
             >
             </ResponseCard>
         ))}
+        <ResponseForm
+        token={token}
+        questionId={questionData.pk}
+        setAnswerData={setAnswerData}
+        />
         </>
     )
 }
