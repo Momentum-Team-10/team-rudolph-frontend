@@ -12,7 +12,7 @@ export default function NavBar({ userImg, user, logout, loggedUserPk }) {
       </div>
       {(user !== '') ? (
         <div className="nav-div">
-          <Link to={`/user/${user}`} state={{userPk: loggedUserPk}} key={user}>
+          <Link to={`/mypage`} state={{userPk: loggedUserPk}} key={user}>
             <img src={userImg === "" ? "https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png"
                 : userImg === null ? "https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png"
                 : userImg}
