@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom';
 import { useState } from 'react';
 
 export default function QuestionCard(props) {
-    const { questionTitle, votesCounter, answersCounter, author, pk } = props
+    const {questionTitle, votes, answersCounter, author} = props
 
     return (
         <div className='question-card'>

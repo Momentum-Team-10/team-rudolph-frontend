@@ -1,5 +1,10 @@
+import UpvoteAnswerButton from "./UpvoteAnswerButton"
+import DownvoteAnswerButton from "./DownvoteAnswerButton"
+import { useState } from "react"
+
 export default function ResponseCard(props) {
-    const { responseText, responseUpvotes, responseDownvotes, bestAnswer } = props
+    const { responseText, bestAnswer, questionId, answerId, token, votes } = props
+    const [answerVotes, setAnswerVotes] = useState(votes)
 
     return (
         <div className='response-card'>
@@ -11,9 +16,9 @@ export default function ResponseCard(props) {
                     ''
                 }
                 <div className='response-card-vote-bar'>
-                    <button className='upvote-button'>{'\u2B06'}</button>
-                    <span className='vote-score'>{responseUpvotes - responseDownvotes}</span>
-                    <button className='downvote-button'>{'\u2B07'}</button>
+                    <UpvoteAnswerButton questionId={questionId} answerId={answerId} token={token} setAnswerVotes={setAnswerVotes}/>
+                    <span className='vote-score'>{answerVotes}</span>
+                    <DownvoteAnswerButton questionId={questionId} answerId={answerId} token={token} setAnswerVotes={setAnswerVotes}/>
                 </div>
             </div>
         </div>

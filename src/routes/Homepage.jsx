@@ -3,7 +3,8 @@ import axios from "axios"
 import { Link } from 'react-router-dom'
 import QuestionCard from '../components/QuestionCard.js'
 
-export default function Homepage({setPk}) {
+
+export default function Homepage(token) {
 const [questionList, setQuestionList] = useState([])
 
   useEffect(() => {
@@ -25,8 +26,10 @@ const [questionList, setQuestionList] = useState([])
             votesCounter={question.votes}
             answersCounter={question.answers.length}
             author={question.author.username}
-            getPk={setPk}
             pk={question.author.pk}
+            questionId={question.pk}
+            token={token}
+            votes={question.votes}
           />
         </Link>
       ))}</>

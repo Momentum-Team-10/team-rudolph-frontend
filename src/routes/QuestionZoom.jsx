@@ -8,7 +8,7 @@ export default function QuestionZoom({token}) {
     let params = useParams()
     const [questionData, setQuestionData] = useState([])
     const [answerData, setAnswerData] = useState([])
-    
+    const [questionVotes, setQuestionVotes] = useState()
     
     useEffect(() => {
         const questionUrl = `https://questions-t10.herokuapp.com/questions/${params.questionId}`
@@ -19,6 +19,7 @@ export default function QuestionZoom({token}) {
             console.log(response.data.answers)
             setQuestionData(response.data)
             setAnswerData(response.data.answers)
+            setQuestionVotes(response.data.votes)
           })
       }, [params])
     return (
@@ -28,14 +29,19 @@ export default function QuestionZoom({token}) {
             questionText={questionData.body}
             token={token}
             questionId={questionData.pk}
+            votes={questionVotes}
+            setQuestionVotes={setQuestionVotes}
             attachments='Attachment Placeholder'/>
         {answerData.map((answer) => (
         <ResponseCard
             responseText={answer.body}
             key = {answer.pk}
-            responseUpvotes={24}
-            responseDownvotes={10}
-            bestAnswer={true}>
+            bestAnswer={true}
+            questionId={questionData.pk}
+            answerId= {answer.pk}
+            token={token}
+            votes={answer.votes}
+            >
             </ResponseCard>
         ))}
         </>
