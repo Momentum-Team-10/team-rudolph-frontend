@@ -2,7 +2,7 @@ import { useState } from 'react';
 import axios from 'axios';
 import { Navigate } from 'react-router'
 
-const Login = ({setAuth, updateAvatar}) => {
+const Login = ({setAuth, updateAvatar, setPk, getLoggedUserPk}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [errors, setErrors] = useState(null);
@@ -30,7 +30,8 @@ const Login = ({setAuth, updateAvatar}) => {
             .then(response => {
               axios.get(`https://questions-t10.herokuapp.com/user/${response.data[0].pk}/`)
                 .then(response => {
-                  console.log(response.data.image_url)
+                  console.log(response.data.pk)
+                  getLoggedUserPk(response.data.pk)
                   updateAvatar(response.data.image_url)
                 })
                 })

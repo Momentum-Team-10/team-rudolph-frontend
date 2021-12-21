@@ -1,6 +1,6 @@
 import { Link } from 'react-router-dom';
 
-export default function NavBar({ userImg, user, logout }) {
+export default function NavBar({ userImg, user, logout, loggedUserPk }) {
 
   return (
     <div className="nav-bar">
@@ -16,7 +16,7 @@ export default function NavBar({ userImg, user, logout }) {
       </div>
       {(user !== '') ? (
         <div className="nav-div">
-          <Link to={`/user/${user}`} key={user}>
+          <Link to={`/user/${user}`} state={{userPk: loggedUserPk}} key={user}>
             <img src={userImg === "" ? "https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png"
                 : userImg === null ? "https://miro.medium.com/max/720/1*W35QUSvGpcLuxPo3SRTH4w.png"
                 : userImg}

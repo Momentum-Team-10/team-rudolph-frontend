@@ -2,11 +2,10 @@ import axios from 'axios';
 import { useState } from 'react';
 import  { Navigate } from 'react-router'
 
-const Registration = ({setAuth}) => {
+const Registration = ({setAuth, updateAvatar, getLoggedUserPk, setPk}) => {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
   const [retypePassword, setRetypePassword] = useState('');
-  const [error, setErrors] = useState('');
   const [loggedIn, setLoggedIn] = useState(false)
 
   const handleSubmit = (event) => {
@@ -27,15 +26,29 @@ const Registration = ({setAuth}) => {
             if (data && data.data.auth_token) {
               setAuth(username, data.data.auth_token)
               setLoggedIn(true)
+              updateAvatar("")
+              axios.get('https://questions-t10.herokuapp.com/auth/users', {
+                headers: {
+                  "Authorization": `Token ${data.data.auth_token}`
+                }
+              })
+                .then(response => {
+                  axios.get(`https://questions-t10.herokuapp.com/user/${response.data[0].pk}/`)
+                    .then(response => {
+                      setPk(response.data.pk)
+                      getLoggedUserPk(response.data.pk)
+                    })
+                })
             }
           })
+        .catch((error) => alert(error.message))
         } else {
       alert("Password and Re-typed Password do not match!")
     }
   }
 
 
-  return ( loggedIn ? <Navigate to="/" /> :
+  return ( loggedIn ? <Navigate to="/aboutyou" /> :
     (<form onSubmit={handleSubmit}>
       <div className="username-register">
         <label htmlFor="usernameInput">Create Username</label>

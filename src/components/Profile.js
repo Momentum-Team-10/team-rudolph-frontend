@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import axios from 'axios';
 
-const Profile = ({ userImg, profileText, thisUser, token, changeBio }) => {
+const Profile = ({ userImg, profileText, updateAvatar, token, changeBio, thisUser, username }) => {
   
   const [expAvatar, setExpAvatar] = useState(false)
   const [expBio, setExpBio] = useState(false)
@@ -23,6 +23,7 @@ const Profile = ({ userImg, profileText, thisUser, token, changeBio }) => {
       .then((data) => {
         console.log(data)
         setAvatar(avatar)
+        updateAvatar(avatar)
       })
       .catch((error) => alert(error.message))
   }
@@ -49,7 +50,8 @@ const Profile = ({ userImg, profileText, thisUser, token, changeBio }) => {
     <div className="user-profile">
       <div>
         <img src={userImg} alt="User Avatar" />
-        <button onClick={() => (expAvatar ? setExpAvatar(false) : setExpAvatar(true))}>Edit Avatar</button>
+        <p>{username}</p>
+        {thisUser && <button onClick={() => (expAvatar ? setExpAvatar(false) : setExpAvatar(true))}>Edit Avatar</button>}
         {expAvatar && (
           <form onSubmit={handleAvatarSubmit}>
           <div className="mv2">
@@ -69,7 +71,7 @@ const Profile = ({ userImg, profileText, thisUser, token, changeBio }) => {
       </div>
       <div>
         <p>{profileText}</p>
-        <button onClick={() => (expBio ? setExpBio(false) : setExpBio(true))}>Edit Bio</button>
+        {thisUser && <button onClick={() => (expBio ? setExpBio(false) : setExpBio(true))}>Edit Bio</button>}
         {expBio && (
           <form onSubmit={handleBioSubmit}>
           <div className="mv2">
