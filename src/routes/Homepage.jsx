@@ -20,7 +20,7 @@ const [questionList, setQuestionList] = useState([])
   return (
     <div className="homepage-div">
         <Link to={"/questions/newquestion/"}>
-        <button classname="btn btn-info new-question-button">New Question</button>
+        <button className="btn btn-info new-question-button">New Question</button>
         </Link>
       <div className="filters">
         <button className="btn btn-info filter-buttons">Most Recent</button>
