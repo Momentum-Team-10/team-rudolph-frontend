@@ -2,14 +2,15 @@ import './App.css';
 import NavBar from './components/NavBar';
 import axios from 'axios';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Homepage from './routes/Homepage'
-import QuestionZoom from './routes/QuestionZoom'
+import Homepage from './routes/Homepage';
+import QuestionZoom from './routes/QuestionZoom';
 import NewQuestion from './routes/NewQuestion';
-import UserPage from './routes/UserPage'
-import Login from './routes/Login'
-import Registration from './routes/Registration'
-import AboutYou from './routes/AboutYou'
+import UserPage from './routes/UserPage';
+import Login from './routes/Login';
+import Registration from './routes/Registration';
+import AboutYou from './routes/AboutYou';
 import useLocalStorageState from 'use-local-storage-state';
+import MyPage from './routes/MyPage';
 
 function App() {
   const [user, setUser] = useLocalStorageState("yesChefUser", '');
@@ -62,6 +63,10 @@ function App() {
         <Route
           path='user/:userId'
           element={<UserPage user={user} token={token} loggedInUser={user} updateAvatar={updateAvatar} loggedUserPk={loggedUserPk} />} 
+        />
+        <Route
+          path='mypage'
+          element={<MyPage user={user} token={token} loggedInUser={user} updateAvatar={updateAvatar} loggedUserPk={loggedUserPk} />} 
         />
         <Route
           path='/login'
