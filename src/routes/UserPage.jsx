@@ -24,8 +24,6 @@ const UserPage = ({loggedInUser, user, token, updateAvatar, loggedUserPk}) => {
         setUsername(response.data.username)
         setUserAnswers(response.data.answers)
         setUserQuestions(response.data.questions)
-        console.log(username)
-        console.log(loggedInUser)
       })
   }, [])
 
