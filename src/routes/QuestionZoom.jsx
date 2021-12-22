@@ -37,39 +37,41 @@ export default function QuestionZoom({ token, loggedUserPk }) {
     return (
         <>
             {questionData.pk ?
-            <QuestionCardZoom
-                questionTitle={questionData.title}
-                questionText={questionText}
-                token={token}
-                questionId={questionData.pk}
-                votes={questionVotes}
-                setQuestionVotes={setQuestionVotes}
-                author={questionAuthorUsername}
-                loggedUserPk={loggedUserPk}
-                questionAuthorId={questionAuthorId}
-                numAnswers={numAnswers}
-                setQuestionText={setQuestionText}
-                attachments='Attachment Placeholder' />
-            : ''}
-            {answerData.map((answer) => (
-                <ResponseCard
-                    responseText={answer.body}
-                    key={answer.pk}
-                    bestAnswer={bestAnswer}
-                    questionId={questionData.pk}
-                    answerId={answer.pk}
+                <QuestionCardZoom
+                    questionTitle={questionData.title}
+                    questionText={questionText}
                     token={token}
-                    votes={answer.votes}
-                    questionAuthorId={questionAuthorId}
+                    questionId={questionData.pk}
+                    votes={questionVotes}
+                    setQuestionVotes={setQuestionVotes}
+                    author={questionAuthorUsername}
                     loggedUserPk={loggedUserPk}
-                    answerAuthorId={answer.author.pk}
-                    author={answer.author.username}
-                    setBestAnswer={setBestAnswer}
-                    setAnswerData={setAnswerData}
-                    setNumAnswers={setNumAnswers}
-                >
-                </ResponseCard>
-            ))}
+                    questionAuthorId={questionAuthorId}
+                    numAnswers={numAnswers}
+                    setQuestionText={setQuestionText}
+                    attachments='Attachment Placeholder' />
+                : ''}
+            {(questionData.pk && answerData) ?
+                <>
+                    {answerData.map((answer) => (
+                        <ResponseCard
+                            responseText={answer.body}
+                            key={answer.pk}
+                            bestAnswer={bestAnswer}
+                            questionId={questionData.pk}
+                            answerId={answer.pk}
+                            token={token}
+                            votes={answer.votes}
+                            questionAuthorId={questionAuthorId}
+                            loggedUserPk={loggedUserPk}
+                            answerAuthorId={answer.author.pk}
+                            author={answer.author.username}
+                            setBestAnswer={setBestAnswer}
+                            setAnswerData={setAnswerData}
+                            setNumAnswers={setNumAnswers}
+                        />
+                    ))}</>
+                : ''}
             <ResponseForm
                 token={token}
                 questionId={questionData.pk}

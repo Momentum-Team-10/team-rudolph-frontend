@@ -8,19 +8,19 @@ import { useState, useEffect } from "react"
 import axios from 'axios'
 
 export default function QuestionCardZoom(props) {
-    const {questionTitle, questionText, attachments, token, questionId, votes, setQuestionVotes, author, questionAuthorId, loggedUserPk, numAnswers, setQuestionText} = props
+    const { questionTitle, questionText, attachments, token, questionId, votes, setQuestionVotes, author, questionAuthorId, loggedUserPk, numAnswers, setQuestionText } = props
     const [questionEditMode, setQuestionEditMode] = useState(false)
     const [isFavoritedZoom, setIsFavoritedZoom] = useState()
-    
+
     useEffect(() => {
-        const idForUrl = questionId
-        const questionsUrl = `https://questions-t10.herokuapp.com/questions/${idForUrl}/`
+        const questionsUrl = `https://questions-t10.herokuapp.com/questions/${questionId}/`
         axios
-          .get(questionsUrl)
-          .then((response) => {
-            if (response.data.favorited.includes(loggedUserPk)) {setIsFavoritedZoom(true)} else {setIsFavoritedZoom(false)}})
-        })
-    
+            .get(questionsUrl)
+            .then((response) => {
+                if (response.data.favorited.includes(loggedUserPk)) { setIsFavoritedZoom(true) } else { setIsFavoritedZoom(false) }
+            })
+    })
+
 
     return (
         <div className='question-card-zoom card'>
@@ -36,7 +36,7 @@ export default function QuestionCardZoom(props) {
                 />
                 :
                 <p className='question-zoom-text'>{questionText}</p>
-                }
+            }
             <UpvoteQuestionButton
                 token={token}
                 questionId={questionId}
@@ -48,23 +48,25 @@ export default function QuestionCardZoom(props) {
                 questionId={questionId}
                 setQuestionVotes={setQuestionVotes}
             />
-            <FavQuestionButtonZoom
-                token={token}
-                questionId={questionId}
-                loggedUserPk={loggedUserPk}
-                isFavoritedZoom={isFavoritedZoom}
-                setIsFavoritedZoom={setIsFavoritedZoom}
+            {(loggedUserPk !== '') ?
+                <FavQuestionButtonZoom
+                    token={token}
+                    questionId={questionId}
+                    loggedUserPk={loggedUserPk}
+                    isFavoritedZoom={isFavoritedZoom}
+                    setIsFavoritedZoom={setIsFavoritedZoom}
                 />
+                : ''}
             {((questionAuthorId === loggedUserPk) && (numAnswers === 0)) ?
-            <EditQuestionButton setQuestionEditMode={setQuestionEditMode}/>
-            : ''
+                <EditQuestionButton setQuestionEditMode={setQuestionEditMode} />
+                : ''
             }
-            {(questionAuthorId === loggedUserPk) ? 
-            <DeleteQuestionButton
-                token={token}
-                questionId={questionId}
-            />
-            : ''
+            {(questionAuthorId === loggedUserPk) ?
+                <DeleteQuestionButton
+                    token={token}
+                    questionId={questionId}
+                />
+                : ''
             }
             {/* <div className='attachments'>Attachments are mapped out here:
                 <>{attachments}</>

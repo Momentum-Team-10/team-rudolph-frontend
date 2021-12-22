@@ -4,12 +4,31 @@ import SetBestAnswerButton from "./SetBestAnswerButton"
 import DeleteAnswerButton from "./DeleteAnswerButton"
 import EditAnswerButton from "./EditAnswerButton"
 import EditAnswerForm from "./EditAnswerForm"
-import { useState } from "react"
+import FavAnswerButton from "./FavAnswerButton"
+import { useState, useEffect } from "react"
+import axios from 'axios'
 
 export default function ResponseCard(props) {
     const { responseText, bestAnswer, setBestAnswer, questionId, answerId, token, votes, questionAuthorId, loggedUserPk, author, answerAuthorId, setAnswerData, setNumAnswers } = props
     const [answerVotes, setAnswerVotes] = useState(votes)
     const [answerEditMode, setAnswerEditMode] = useState(false)
+    const [isAnswerFavorited, setIsAnswerFavorited] = useState()
+
+
+    useEffect(() => {
+        if (loggedUserPk) {
+        const answerUrl = `https://questions-t10.herokuapp.com/questions/${questionId}/answers/${answerId}/`
+        axios
+            .get(answerUrl,
+                {
+                    headers: {
+                        'Authorization': `Token ${token}`
+                    }
+                }
+            ).then((response) => {
+                if (response.data.favorited.includes(loggedUserPk)) { setIsAnswerFavorited(true) } else { setIsAnswerFavorited(false) }
+            })
+    }})
 
     return (
         <div className='response-card card'>
@@ -53,6 +72,10 @@ export default function ResponseCard(props) {
                 <DeleteAnswerButton questionId={questionId} token={token} answerId={answerId} setAnswerData={setAnswerData} setNumAnswers={setNumAnswers}/>
                 :
                 ''}
+                {loggedUserPk ?
+                <FavAnswerButton questionId={questionId} token={token} answerId={answerId} loggedUserPk={loggedUserPk} isAnswerFavorited={isAnswerFavorited} setIsAnswerFavorited={setIsAnswerFavorited}/>
+            :
+            ''}
             </div>
         </div>
     )
