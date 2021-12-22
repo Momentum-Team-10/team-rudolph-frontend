@@ -62,6 +62,21 @@ body {
   border-color:#456990;
 }
 
+.bio-section {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-evenly;
+}
+
+.bio {
+  min-width: 600px;
+  min-height: 250px;
+  background-color: #77ACA2;
+  border: solid;
+  border-width: 2px;
+  border-color:#456990;
+}
+
 .sitename {
   margin: auto;
   text-align: center;
@@ -168,6 +183,10 @@ body {
 .user-profile{
   display: flex;
   justify-content: space-around;
+}
+
+.user-content {
+  margin: 20px;
 }
 
 .homepage-div{

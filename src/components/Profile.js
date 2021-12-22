@@ -64,13 +64,14 @@ const Profile = ({ userImg, profileText, updateAvatar, token, changeBio, thisUse
                 value={avatar}
                 onChange={(event) => setAvatar(event.target.value)}
               />
-            </div>
-            <button type="submit">Submit</button>
+          </div>
+          <button type="submit" className="btn btn-light btn-small">Submit</button>
           </form>
         )}
       </div>
-      <div>
-        <p>{profileText}</p>
+      <div className='bio-section'>
+        <h3 className="site-sub">Bio</h3>
+        <div className="container card bio">{profileText}</div>
         {thisUser && <button onClick={() => (expBio ? setExpBio(false) : setExpBio(true))}>Edit Bio</button>}
         {expBio && (
           <form onSubmit={handleBioSubmit}>
@@ -84,8 +85,8 @@ const Profile = ({ userImg, profileText, updateAvatar, token, changeBio, thisUse
                 value={bio}
                 onChange={(event) => setBio(event.target.value)}
               />
-            </div>
-            <button type="submit">Submit</button>
+          </div>
+          <button type="submit" className='btn btn-light btn-small'>Submit</button>
           </form>
         )}
       </div>

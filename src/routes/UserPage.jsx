@@ -38,7 +38,7 @@ const UserPage = ({loggedInUser, user, token, updateAvatar, loggedUserPk}) => {
         updateAvatar={updateAvatar}
         username={username}
       />
-      <div>
+      <div className="user-content">
         <h3>{username}'s Questions</h3>
         {userQuestions.map((filteredQuestion) => (
           <Link to={`/questions/${filteredQuestion.pk}`} key={filteredQuestion.pk}>
@@ -50,7 +50,7 @@ const UserPage = ({loggedInUser, user, token, updateAvatar, loggedUserPk}) => {
         </Link>
         ))}
       </div>
-      <div>
+      <div className="user-content">
         <h3>{username}'s Answers</h3>
         {userAnswers.map(answer => (
           <Link to={`/questions/${answer.question}`} key={answer.question}>
