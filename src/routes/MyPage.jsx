@@ -1,9 +1,9 @@
 import Profile from "../components/Profile"
-import ResponseCard from "../components/ResponseCard";
+import ResponseCardProfile from "../components/ResponseCardProfile";
 import { useState, useEffect } from 'react';
 import axios from 'axios';
 import { Link, useLocation } from "react-router-dom";
-import QuestionCard from "../components/QuestionCard";
+import QuestionCardProfile from "../components/QuestionCardProfile";
 
 const UserPage = ({loggedInUser, user, token, updateAvatar, loggedUserPk}) => {
 
@@ -38,33 +38,32 @@ const UserPage = ({loggedInUser, user, token, updateAvatar, loggedUserPk}) => {
         updateAvatar={updateAvatar}
         username={username}
       />
-      {/* <div>
+      <div>
         <h3>{username}'s Questions</h3>
         {userQuestions.map((filteredQuestion) => (
-          <Link to={`/questions/${filteredQuestion.pk}`} key={filteredQuestion.pk}>
-            <QuestionCard
+          <Link className='question-card-title-link' to={`/questions/${filteredQuestion.pk}`} key={filteredQuestion.pk}>
+            <QuestionCardProfile
               questionTitle={filteredQuestion.title}
-              votesCounter={filteredQuestion.votes}
-              author={filteredQuestion.author}
+              questionText={filteredQuestion.body}
+              votes={filteredQuestion.votes}
+              key={filteredQuestion.pk}
           />
-        </Link>
+          </Link>
         ))}
       </div>
       <div>
         <h3>{username}'s Answers</h3>
         {userAnswers.map(answer => (
           <Link to={`/questions/${answer.question}`} key={answer.question}>
-            <ResponseCard
+            <ResponseCardProfile
               responseText={answer.body}
               key = {answer.pk}
-              responseUpvotes={24}
-              responseDownvotes={10}
-              bestAnswer={true}
+              votes={answer.votes}
             />
           </Link>
         ))
         }
-      </div> */}
+      </div>
     </div>
   )
 }
