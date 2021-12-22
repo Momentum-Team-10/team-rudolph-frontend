@@ -8,18 +8,14 @@ import { useState, useEffect } from "react"
 import axios from 'axios'
 
 export default function QuestionCardZoom(props) {
-    const { questionTitle, questionText, attachments, token, questionId, votes, setQuestionVotes, author, questionAuthorId, loggedUserPk, numAnswers, setQuestionText } = props
+    const { questionTitle, questionText, attachments, token, questionId, votes, setQuestionVotes, author, questionAuthorId, loggedUserPk, numAnswers, setQuestionText, questionFavorited } = props
     const [questionEditMode, setQuestionEditMode] = useState(false)
     const [isFavoritedZoom, setIsFavoritedZoom] = useState()
 
     useEffect(() => {
-        const questionsUrl = `https://questions-t10.herokuapp.com/questions/${questionId}/`
-        axios
-            .get(questionsUrl)
-            .then((response) => {
-                if (response.data.favorited.includes(loggedUserPk)) { setIsFavoritedZoom(true) } else { setIsFavoritedZoom(false) }
-            })
-    })
+        if(questionFavorited.includes(loggedUserPk)) {
+            setIsFavoritedZoom(true) }else setIsFavoritedZoom(false)
+    },[questionFavorited, loggedUserPk])
 
 
     return (

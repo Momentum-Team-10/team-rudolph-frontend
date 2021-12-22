@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export default function FavAnswerButton({ token, questionId, answerId, loggedUserPk, isAnswerFavorited, setIsAnswerFavorited }) {
     const handleSubmit = (event) => {
-        const favoriteApi = `https://questions-t10.herokuapp.com/questions/${questionId}/answers/${answerId}/`
+        const favoriteApi = `https://questions-t10.herokuapp.com/questions/${questionId}/answers/${answerId}`
         event.preventDefault()
         axios.patch(favoriteApi, {
             "favorited": []
@@ -30,9 +30,9 @@ export default function FavAnswerButton({ token, questionId, answerId, loggedUse
         <>
 
             {isAnswerFavorited ?
-                <img className='fav-button' src='/unfav-star.png' alt='Unfavorite Button' onClick={(event) => handleSubmit(event)} />
+                <img className='fav-button' src='/fav-star.png' alt='Unfavorite Button' onClick={(event) => handleSubmit(event)} />
                 :
-                <img className='fav-button' src='/fav-star.png' alt='Favorite Button' onClick={(event) => handleSubmit(event)} />
+                <img className='fav-button' src='/unfav-star.png' alt='Favorite Button' onClick={(event) => handleSubmit(event)} />
             }
         </>
     )

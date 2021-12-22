@@ -30,9 +30,9 @@ export default function FavQuestionButtonZoom({ token, questionId, loggedUserPk,
         <>
 
             {isFavoritedZoom ?
-                <img className='fav-button' src='/unfav-star.png' alt='Unfavorite Button' onClick={(event) => handleSubmit(event)} />
+                <img className='fav-button' src='/fav-star.png' alt='Unfavorite Button' onClick={(event) => handleSubmit(event)} />
                 :
-                <img className='fav-button' src='/fav-star.png' alt='Favorite Button' onClick={(event) => handleSubmit(event)} />
+                <img className='fav-button' src='/unfav-star.png' alt='Favorite Button' onClick={(event) => handleSubmit(event)} />
             }
         </>
     )

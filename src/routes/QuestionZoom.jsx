@@ -11,8 +11,6 @@ export default function QuestionZoom({ token, loggedUserPk }) {
     const [answerData, setAnswerData] = useState([])
     const [questionVotes, setQuestionVotes] = useState()
     const [bestAnswer, setBestAnswer] = useState()
-    const [questionAuthorUsername, setQuestionAuthorUsername] = useState()
-    const [questionAuthorId, setQuestionAuthorId] = useState()
     const [numAnswers, setNumAnswers] = useState()
     const [questionText, setQuestionText] = useState()
 
@@ -26,7 +24,6 @@ export default function QuestionZoom({ token, loggedUserPk }) {
                 console.log(response.data.author.pk)
                 setQuestionData(response.data)
                 setAnswerData(response.data.answers)
-                
                 
             })
     }, [params.questionId])
@@ -44,6 +41,7 @@ export default function QuestionZoom({ token, loggedUserPk }) {
                     loggedUserPk={loggedUserPk}
                     questionAuthorId={questionData.author.pk}
                     numAnswers={numAnswers}
+                    questionFavorited={questionData.favorited}
                     setQuestionText={setQuestionText}
                     attachments='Attachment Placeholder' />
                 : ''}
