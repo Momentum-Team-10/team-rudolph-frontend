@@ -9,26 +9,16 @@ import { useState, useEffect } from "react"
 import axios from 'axios'
 
 export default function ResponseCard(props) {
-    const { responseText, bestAnswer, setBestAnswer, questionId, answerId, token, votes, questionAuthorId, loggedUserPk, author, answerAuthorId, setAnswerData, setNumAnswers } = props
+    const { responseText, bestAnswer, setBestAnswer, questionId, answerId, token, votes, questionAuthorId, loggedUserPk, author, answerAuthorId, setAnswerData, setNumAnswers, answerFavorited } = props
     const [answerVotes, setAnswerVotes] = useState(votes)
     const [answerEditMode, setAnswerEditMode] = useState(false)
     const [isAnswerFavorited, setIsAnswerFavorited] = useState()
 
-
     useEffect(() => {
-        if (loggedUserPk) {
-        const answerUrl = `https://questions-t10.herokuapp.com/questions/${questionId}/answers/${answerId}/`
-        axios
-            .get(answerUrl,
-                {
-                    headers: {
-                        'Authorization': `Token ${token}`
-                    }
-                }
-            ).then((response) => {
-                if (response.data.favorited.includes(loggedUserPk)) { setIsAnswerFavorited(true) } else { setIsAnswerFavorited(false) }
-            })
-    }})
+        if(answerFavorited.includes(loggedUserPk)) {
+            setIsAnswerFavorited(true) } else setIsAnswerFavorited(false)
+    },[answerFavorited, loggedUserPk])
+    
 
     return (
         <div className='response-card card'>

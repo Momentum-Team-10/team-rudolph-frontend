@@ -24,29 +24,25 @@ export default function QuestionZoom({ token, loggedUserPk }) {
                 console.log(response.data)
                 console.log(response.data.answers)
                 console.log(response.data.author.pk)
-                setQuestionAuthorUsername(response.data.author.username)
-                setQuestionAuthorId(response.data.author.pk)
                 setQuestionData(response.data)
                 setAnswerData(response.data.answers)
-                setQuestionVotes(response.data.votes)
-                setBestAnswer(response.data.answered)
-                setNumAnswers(response.data.answers.length)
-                setQuestionText(response.data.body)
+                
+                
             })
-    }, [params])
+    }, [params.questionId])
     return (
         <>
             {questionData.pk ?
                 <QuestionCardZoom
                     questionTitle={questionData.title}
-                    questionText={questionText}
+                    questionText={questionData.body}
                     token={token}
                     questionId={questionData.pk}
-                    votes={questionVotes}
+                    votes={questionData.votes}
                     setQuestionVotes={setQuestionVotes}
-                    author={questionAuthorUsername}
+                    author={questionData.author.username}
                     loggedUserPk={loggedUserPk}
-                    questionAuthorId={questionAuthorId}
+                    questionAuthorId={questionData.author.pk}
                     numAnswers={numAnswers}
                     setQuestionText={setQuestionText}
                     attachments='Attachment Placeholder' />
@@ -62,13 +58,14 @@ export default function QuestionZoom({ token, loggedUserPk }) {
                             answerId={answer.pk}
                             token={token}
                             votes={answer.votes}
-                            questionAuthorId={questionAuthorId}
+                            questionAuthorId={answer.author.pk}
                             loggedUserPk={loggedUserPk}
                             answerAuthorId={answer.author.pk}
                             author={answer.author.username}
-                            setBestAnswer={setBestAnswer}
+                            setBestAnswer={questionData.answered}
                             setAnswerData={setAnswerData}
-                            setNumAnswers={setNumAnswers}
+                            setNumAnswers={questionData.answers.length}
+                            answerFavorited={answer.favorited}
                         />
                     ))}</>
                 : ''}
