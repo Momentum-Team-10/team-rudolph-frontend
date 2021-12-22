@@ -2,15 +2,29 @@ import FavButton from "./FavButton"
 import DeleteQuestionButton from "./DeleteQuestionButton"
 import UpvoteQuestionButton from "./UpvoteQuestionButton"
 import DownvoteQuestionButton from "./DownvoteQuestionButton"
+import EditQuestionButton from "./EditQuestionButton"
+import EditQuesionForm from "./EditQuestionForm"
+import { useState } from "react"
 
 export default function QuestionCardZoom(props) {
-    const {questionTitle, questionText, attachments, token, questionId, votes, setQuestionVotes, author, questionAuthorId, loggedUserPk} = props
+    const {questionTitle, questionText, attachments, token, questionId, votes, setQuestionVotes, author, questionAuthorId, loggedUserPk, numAnswers, setQuestionText} = props
+    const [questionEditMode, setQuestionEditMode] = useState(false)
 
     return (
         <div className='question-card-zoom card'>
             <div>{author}</div>
             <h3 className='question-zoom-title'>{questionTitle}</h3>
-            <p className='question-zoom-text'>{questionText}</p>
+            {(questionEditMode === true) ?
+                <EditQuesionForm
+                    token={token}
+                    questionId={questionId}
+                    setQuestionEditMode={setQuestionEditMode}
+                    questionText={questionText}
+                    setQuestionText={setQuestionText}
+                />
+                :
+                <p className='question-zoom-text'>{questionText}</p>
+                }
             <UpvoteQuestionButton
                 token={token}
                 questionId={questionId}
@@ -26,13 +40,16 @@ export default function QuestionCardZoom(props) {
                 token={token}
                 questionId={questionId}
                 />
+            {((questionAuthorId === loggedUserPk) && (numAnswers === 0)) ?
+            <EditQuestionButton setQuestionEditMode={setQuestionEditMode}/>
+            : ''
+            }
             {(questionAuthorId === loggedUserPk) ? 
             <DeleteQuestionButton
                 token={token}
                 questionId={questionId}
             />
-            :
-            ''
+            : ''
             }
             {/* <div className='attachments'>Attachments are mapped out here:
                 <>{attachments}</>

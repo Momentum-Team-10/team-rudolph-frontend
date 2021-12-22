@@ -200,7 +200,7 @@ body {
   display: flex;
 }
 
-.filter-buttons {
+.filter-buttons, .new-question-button {
   margin: 15px;
   background-color: #77ACA2 !important;
   border: solid;

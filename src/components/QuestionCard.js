@@ -13,7 +13,7 @@ export default function QuestionCard(props) {
                     <div className='author-link'>Author: {author}</div>
                 </Link>   
                 <div>Votes: {votesCounter}</div>
-                {answersCounter && <div>Answers: {answersCounter}</div>}
+                <div>Answers: {answersCounter}</div>
             </div>
             <div className='lower-right-placeholder'>Misc Info</div>
         </div>

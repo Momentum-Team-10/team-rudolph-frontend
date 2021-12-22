@@ -1,6 +1,6 @@
 import axios from "axios"
 
-export default function DeleteAnswerButton({ questionId, answerId, token, setAnswerData }) {
+export default function DeleteAnswerButton({ questionId, answerId, token, setAnswerData, setNumAnswers }) {
 
     const handleSubmit = (event) => {
         const deleteApi = `https://questions-t10.herokuapp.com/questions/${questionId}/answers/${answerId}`
@@ -16,10 +16,12 @@ export default function DeleteAnswerButton({ questionId, answerId, token, setAns
             if (response) {
                 axios
                     .get(`https://questions-t10.herokuapp.com/questions/${questionId}`)
-                    .then(response => setAnswerData(response.data.answers))
-
-            }
-        })
+                    .then(response => {
+                        setAnswerData(response.data.answers)
+                        console.log(response.data)
+                        setNumAnswers(response.data.answers.length)
+                    })
+        }})
             .catch((error) => console.log(error.message))
     }
 
