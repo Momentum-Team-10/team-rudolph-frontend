@@ -1,4 +1,4 @@
-import FavButton from "./FavButton"
+import FavQuestionButton from "./FavQuestionButton"
 import DeleteQuestionButton from "./DeleteQuestionButton"
 import UpvoteQuestionButton from "./UpvoteQuestionButton"
 import DownvoteQuestionButton from "./DownvoteQuestionButton"
@@ -36,7 +36,7 @@ export default function QuestionCardZoom(props) {
                 questionId={questionId}
                 setQuestionVotes={setQuestionVotes}
             />
-            <FavButton
+            <FavQuestionButton
                 token={token}
                 questionId={questionId}
                 />
