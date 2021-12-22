@@ -2,7 +2,7 @@ import axios from 'axios';
 
 export default function FavAnswerButton({ token, questionId, answerId, loggedUserPk, isAnswerFavorited, setIsAnswerFavorited }) {
     const handleSubmit = (event) => {
-        const favoriteApi = `https://questions-t10.herokuapp.com/questions/${questionId}/answers/${answerId}`
+        const favoriteApi = `https://questions-t10.herokuapp.com/questions/${questionId}/answers/${answerId}/`
         event.preventDefault()
         axios.patch(favoriteApi, {
             "favorited": []
@@ -14,7 +14,6 @@ export default function FavAnswerButton({ token, questionId, answerId, loggedUse
                 }
             }
         ).then(response => {
-            console.log(response.data)
             if (response) {
                 if (response.data.favorited.includes(loggedUserPk)) {
                     setIsAnswerFavorited(true)
