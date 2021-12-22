@@ -98,10 +98,14 @@ body {
   color: #280004;
 }
 
-.question-card .lower-right-placeholder {
-  grid-row: 3;
+.question-card .fav-container {
+  grid-row: 1;
   grid-column: 3;
   color: #280004;
+}
+
+.fav-button {
+  float: right;
 }
 
 .question-card .question-card-counters {
@@ -205,4 +209,8 @@ body {
 
 a {
   text-decoration: none !important;
+}
+
+.fav-button {
+  width: 35px;
 }

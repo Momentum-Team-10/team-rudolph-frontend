@@ -52,7 +52,7 @@ function App() {
       <Routes>
         <Route
           path='/'
-          element={<Homepage token={token} />} />
+          element={<Homepage token={token} loggedInUser={user} loggedUserPk={loggedUserPk}/>} />
         <Route
           path='questions/:questionId'
           element={<QuestionZoom token={token} loggedUserPk={loggedUserPk}/>} />

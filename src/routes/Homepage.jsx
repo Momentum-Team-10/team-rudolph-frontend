@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom'
 import QuestionCard from '../components/QuestionCard.js'
 
 
-export default function Homepage(token) {
+export default function Homepage({token, loggedInUser, loggedUserPk}) {
 const [questionList, setQuestionList] = useState([])
 
   useEffect(() => {
@@ -37,6 +37,8 @@ const [questionList, setQuestionList] = useState([])
               token={token}
               votes={question.votes}
               key={question.pk}
+              loggedInUser={loggedInUser}
+              loggedUserPk = {loggedUserPk}
             />
         ))}
     </div>
