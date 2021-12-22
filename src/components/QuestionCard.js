@@ -4,16 +4,13 @@ import axios from 'axios';
 import FavQuestionButton from './FavQuestionButton';
 
 export default function QuestionCard(props) {
-    const {questionTitle, votesCounter, answersCounter, author, pk, questionId, token, loggedInUser, loggedUserPk} = props
+    const {questionTitle, votesCounter, answersCounter, author, pk, questionId, token, loggedInUser, loggedUserPk, questionFavorited} = props
     const [isFavorited, setIsFavorited] = useState()
 
     useEffect(() => {
-        const questionsUrl = `https://questions-t10.herokuapp.com/questions/${questionId}`
-        axios
-          .get(questionsUrl)
-          .then((response) => {
-            if (response.data.favorited.includes(loggedUserPk)) {setIsFavorited(true)} else {setIsFavorited(false)}})
-        })
+        if(questionFavorited.includes(loggedUserPk)) {
+            setIsFavorited(true) }else setIsFavorited(false)
+    },[questionFavorited, loggedUserPk])
 
     return (
         <div className='question-card container card'>

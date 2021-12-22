@@ -9,7 +9,7 @@ export default function QuestionZoom({ token, loggedUserPk }) {
     let params = useParams()
     const [questionData, setQuestionData] = useState([])
     const [answerData, setAnswerData] = useState([])
-    const [questionVotes, setQuestionVotes] = useState()
+    const [questionVotes, setQuestionVotes] = useState(null)
     const [bestAnswer, setBestAnswer] = useState()
     const [numAnswers, setNumAnswers] = useState()
     const [questionText, setQuestionText] = useState()
@@ -24,18 +24,19 @@ export default function QuestionZoom({ token, loggedUserPk }) {
                 console.log(response.data.author.pk)
                 setQuestionData(response.data)
                 setAnswerData(response.data.answers)
+                setQuestionVotes(response.data.votes)
                 
             })
     }, [params.questionId])
     return (
         <>
-            {questionData.pk ?
+            {(questionData.pk && (questionVotes !== null)) ?
                 <QuestionCardZoom
                     questionTitle={questionData.title}
                     questionText={questionData.body}
                     token={token}
                     questionId={questionData.pk}
-                    votes={questionData.votes}
+                    questionVotes={questionVotes}
                     setQuestionVotes={setQuestionVotes}
                     author={questionData.author.username}
                     loggedUserPk={loggedUserPk}

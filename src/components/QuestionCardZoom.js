@@ -8,7 +8,7 @@ import { useState, useEffect } from "react"
 import axios from 'axios'
 
 export default function QuestionCardZoom(props) {
-    const { questionTitle, questionText, attachments, token, questionId, votes, setQuestionVotes, author, questionAuthorId, loggedUserPk, numAnswers, setQuestionText, questionFavorited } = props
+    const { questionTitle, questionText, attachments, token, questionId, questionVotes, setQuestionVotes, author, questionAuthorId, loggedUserPk, numAnswers, setQuestionText, questionFavorited } = props
     const [questionEditMode, setQuestionEditMode] = useState(false)
     const [isFavoritedZoom, setIsFavoritedZoom] = useState()
 
@@ -38,7 +38,7 @@ export default function QuestionCardZoom(props) {
                 questionId={questionId}
                 setQuestionVotes={setQuestionVotes}
             />
-            <span className='vote-score'>{votes}</span>
+            <span className='vote-score'>{questionVotes}</span>
             <DownvoteQuestionButton
                 token={token}
                 questionId={questionId}
