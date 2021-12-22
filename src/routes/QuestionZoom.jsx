@@ -25,15 +25,17 @@ export default function QuestionZoom({ token, loggedUserPk }) {
                 setQuestionData(response.data)
                 setAnswerData(response.data.answers)
                 setQuestionVotes(response.data.votes)
+                setBestAnswer(response.data.answered)
+                setQuestionText(response.data.body)
                 
             })
-    }, [params.questionId])
+    }, [params.questionId, questionText])
     return (
         <>
             {(questionData.pk && (questionVotes !== null)) ?
                 <QuestionCardZoom
                     questionTitle={questionData.title}
-                    questionText={questionData.body}
+                    questionText={questionText}
                     token={token}
                     questionId={questionData.pk}
                     questionVotes={questionVotes}
@@ -61,7 +63,7 @@ export default function QuestionZoom({ token, loggedUserPk }) {
                             loggedUserPk={loggedUserPk}
                             answerAuthorId={answer.author.pk}
                             author={answer.author.username}
-                            setBestAnswer={questionData.answered}
+                            setBestAnswer={setBestAnswer}
                             setAnswerData={setAnswerData}
                             setNumAnswers={questionData.answers.length}
                             answerFavorited={answer.favorited}
