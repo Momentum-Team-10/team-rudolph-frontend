@@ -38,7 +38,8 @@ const [questionList, setQuestionList] = useState([])
               votes={question.votes}
               key={question.pk}
               loggedInUser={loggedInUser}
-              loggedUserPk = {loggedUserPk}
+              loggedUserPk={loggedUserPk}
+              questionFavorited={question.favorited}
             />
         ))}
     </div>

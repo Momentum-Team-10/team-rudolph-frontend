@@ -5,10 +5,9 @@ import DownvoteQuestionButton from "./DownvoteQuestionButton"
 import EditQuestionButton from "./EditQuestionButton"
 import EditQuesionForm from "./EditQuestionForm"
 import { useState, useEffect } from "react"
-import axios from 'axios'
 
 export default function QuestionCardZoom(props) {
-    const { questionTitle, questionText, attachments, token, questionId, votes, setQuestionVotes, author, questionAuthorId, loggedUserPk, numAnswers, setQuestionText, questionFavorited } = props
+    const { questionTitle, questionText, attachments, token, questionId, questionVotes, setQuestionVotes, author, questionAuthorId, loggedUserPk, numAnswers, setQuestionText, questionFavorited } = props
     const [questionEditMode, setQuestionEditMode] = useState(false)
     const [isFavoritedZoom, setIsFavoritedZoom] = useState()
 
@@ -16,7 +15,6 @@ export default function QuestionCardZoom(props) {
         if(questionFavorited.includes(loggedUserPk)) {
             setIsFavoritedZoom(true) }else setIsFavoritedZoom(false)
     },[questionFavorited, loggedUserPk])
-
 
     return (
         <div className='question-card-zoom card'>
@@ -38,7 +36,7 @@ export default function QuestionCardZoom(props) {
                 questionId={questionId}
                 setQuestionVotes={setQuestionVotes}
             />
-            <span className='vote-score'>{votes}</span>
+            <span className='vote-score'>{questionVotes}</span>
             <DownvoteQuestionButton
                 token={token}
                 questionId={questionId}

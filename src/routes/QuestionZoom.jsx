@@ -9,10 +9,11 @@ export default function QuestionZoom({ token, loggedUserPk }) {
     let params = useParams()
     const [questionData, setQuestionData] = useState([])
     const [answerData, setAnswerData] = useState([])
-    const [questionVotes, setQuestionVotes] = useState()
+    const [questionVotes, setQuestionVotes] = useState(null)
     const [bestAnswer, setBestAnswer] = useState()
     const [numAnswers, setNumAnswers] = useState()
     const [questionText, setQuestionText] = useState()
+    
 
     useEffect(() => {
         const questionUrl = `https://questions-t10.herokuapp.com/questions/${params.questionId}/`
@@ -24,18 +25,22 @@ export default function QuestionZoom({ token, loggedUserPk }) {
                 console.log(response.data.author.pk)
                 setQuestionData(response.data)
                 setAnswerData(response.data.answers)
+                setQuestionVotes(response.data.votes)
+                setBestAnswer(response.data.answered)
+                setQuestionText(response.data.body)
+                setNumAnswers(response.data.answers.length)
                 
             })
-    }, [params.questionId])
+    }, [params.questionId, questionText])
     return (
         <>
-            {questionData.pk ?
+            {(questionData.pk && (questionVotes !== null)) ?
                 <QuestionCardZoom
                     questionTitle={questionData.title}
-                    questionText={questionData.body}
+                    questionText={questionText}
                     token={token}
                     questionId={questionData.pk}
-                    votes={questionData.votes}
+                    questionVotes={questionVotes}
                     setQuestionVotes={setQuestionVotes}
                     author={questionData.author.username}
                     loggedUserPk={loggedUserPk}
@@ -60,9 +65,9 @@ export default function QuestionZoom({ token, loggedUserPk }) {
                             loggedUserPk={loggedUserPk}
                             answerAuthorId={answer.author.pk}
                             author={answer.author.username}
-                            setBestAnswer={questionData.answered}
+                            setBestAnswer={setBestAnswer}
                             setAnswerData={setAnswerData}
-                            setNumAnswers={questionData.answers.length}
+                            setNumAnswers={setNumAnswers}
                             answerFavorited={answer.favorited}
                         />
                     ))}</>
