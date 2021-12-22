@@ -11,63 +11,62 @@ export default function QuestionZoom({ token, loggedUserPk }) {
     const [answerData, setAnswerData] = useState([])
     const [questionVotes, setQuestionVotes] = useState()
     const [bestAnswer, setBestAnswer] = useState()
-    const [questionAuthorUsername, setQuestionAuthorUsername] = useState()
-    const [questionAuthorId, setQuestionAuthorId] = useState()
     const [numAnswers, setNumAnswers] = useState()
     const [questionText, setQuestionText] = useState()
 
     useEffect(() => {
-        const questionUrl = `https://questions-t10.herokuapp.com/questions/${params.questionId}`
+        const questionUrl = `https://questions-t10.herokuapp.com/questions/${params.questionId}/`
         axios
             .get(questionUrl)
             .then((response) => {
                 console.log(response.data)
                 console.log(response.data.answers)
                 console.log(response.data.author.pk)
-                setQuestionAuthorUsername(response.data.author.username)
-                setQuestionAuthorId(response.data.author.pk)
                 setQuestionData(response.data)
                 setAnswerData(response.data.answers)
-                setQuestionVotes(response.data.votes)
-                setBestAnswer(response.data.answered)
-                setNumAnswers(response.data.answers.length)
-                setQuestionText(response.data.body)
+                
             })
-    }, [params])
+    }, [params.questionId])
     return (
         <>
-            <QuestionCardZoom
-                questionTitle={questionData.title}
-                questionText={questionText}
-                token={token}
-                questionId={questionData.pk}
-                votes={questionVotes}
-                setQuestionVotes={setQuestionVotes}
-                author={questionAuthorUsername}
-                loggedUserPk={loggedUserPk}
-                questionAuthorId={questionAuthorId}
-                numAnswers={numAnswers}
-                setQuestionText={setQuestionText}
-                attachments='Attachment Placeholder' />
-            {answerData.map((answer) => (
-                <ResponseCard
-                    responseText={answer.body}
-                    key={answer.pk}
-                    bestAnswer={bestAnswer}
-                    questionId={questionData.pk}
-                    answerId={answer.pk}
+            {questionData.pk ?
+                <QuestionCardZoom
+                    questionTitle={questionData.title}
+                    questionText={questionData.body}
                     token={token}
-                    votes={answer.votes}
-                    questionAuthorId={questionAuthorId}
+                    questionId={questionData.pk}
+                    votes={questionData.votes}
+                    setQuestionVotes={setQuestionVotes}
+                    author={questionData.author.username}
                     loggedUserPk={loggedUserPk}
-                    answerAuthorId={answer.author.pk}
-                    author={answer.author.username}
-                    setBestAnswer={setBestAnswer}
-                    setAnswerData={setAnswerData}
-                    setNumAnswers={setNumAnswers}
-                >
-                </ResponseCard>
-            ))}
+                    questionAuthorId={questionData.author.pk}
+                    numAnswers={numAnswers}
+                    questionFavorited={questionData.favorited}
+                    setQuestionText={setQuestionText}
+                    attachments='Attachment Placeholder' />
+                : ''}
+            {(questionData.pk && answerData) ?
+                <>
+                    {answerData.map((answer) => (
+                        <ResponseCard
+                            responseText={answer.body}
+                            key={answer.pk}
+                            bestAnswer={bestAnswer}
+                            questionId={questionData.pk}
+                            answerId={answer.pk}
+                            token={token}
+                            votes={answer.votes}
+                            questionAuthorId={answer.author.pk}
+                            loggedUserPk={loggedUserPk}
+                            answerAuthorId={answer.author.pk}
+                            author={answer.author.username}
+                            setBestAnswer={questionData.answered}
+                            setAnswerData={setAnswerData}
+                            setNumAnswers={questionData.answers.length}
+                            answerFavorited={answer.favorited}
+                        />
+                    ))}</>
+                : ''}
             <ResponseForm
                 token={token}
                 questionId={questionData.pk}

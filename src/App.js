@@ -32,6 +32,7 @@ function App() {
 
   const logout = () => {
     setUser('')
+    setLoggedUserPk('')
     axios.post("https://questions-t10.herokuapp.com/auth/token/logout/", {}, {
       headers: {
         "Authorization": `Token ${token}`
@@ -52,7 +53,7 @@ function App() {
       <Routes>
         <Route
           path='/'
-          element={<Homepage token={token} />} />
+          element={<Homepage token={token} loggedInUser={user} loggedUserPk={loggedUserPk}/>} />
         <Route
           path='questions/:questionId'
           element={<QuestionZoom token={token} loggedUserPk={loggedUserPk}/>} />

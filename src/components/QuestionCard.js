@@ -1,7 +1,19 @@
 import { Link } from 'react-router-dom';
+import { useEffect, useState } from 'react';
+import axios from 'axios';
+import FavQuestionButton from './FavQuestionButton';
 
 export default function QuestionCard(props) {
-    const {questionTitle, votesCounter, answersCounter, author, pk, questionId} = props
+    const {questionTitle, votesCounter, answersCounter, author, pk, questionId, token, loggedInUser, loggedUserPk} = props
+    const [isFavorited, setIsFavorited] = useState()
+
+    useEffect(() => {
+        const questionsUrl = `https://questions-t10.herokuapp.com/questions/${questionId}`
+        axios
+          .get(questionsUrl)
+          .then((response) => {
+            if (response.data.favorited.includes(loggedUserPk)) {setIsFavorited(true)} else {setIsFavorited(false)}})
+        })
 
     return (
         <div className='question-card container card'>
@@ -15,7 +27,11 @@ export default function QuestionCard(props) {
                 <div>Votes: {votesCounter}</div>
                 <div>Answers: {answersCounter}</div>
             </div>
-            <div className='lower-right-placeholder'>Misc Info</div>
+            <div className='fav-container'>
+                {loggedInUser ?
+                    <FavQuestionButton token={token} questionId={questionId} loggedUserPk={loggedUserPk} isFavorited={isFavorited} setIsFavorited={setIsFavorited}/>
+                    : ''}
+            </div>
         </div>
     )
 }
