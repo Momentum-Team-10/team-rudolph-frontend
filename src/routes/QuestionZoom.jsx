@@ -13,6 +13,7 @@ export default function QuestionZoom({ token, loggedUserPk }) {
     const [bestAnswer, setBestAnswer] = useState()
     const [numAnswers, setNumAnswers] = useState()
     const [questionText, setQuestionText] = useState()
+    
 
     useEffect(() => {
         const questionUrl = `https://questions-t10.herokuapp.com/questions/${params.questionId}/`
@@ -27,6 +28,7 @@ export default function QuestionZoom({ token, loggedUserPk }) {
                 setQuestionVotes(response.data.votes)
                 setBestAnswer(response.data.answered)
                 setQuestionText(response.data.body)
+                setNumAnswers(response.data.answers.length)
                 
             })
     }, [params.questionId, questionText])
@@ -65,7 +67,7 @@ export default function QuestionZoom({ token, loggedUserPk }) {
                             author={answer.author.username}
                             setBestAnswer={setBestAnswer}
                             setAnswerData={setAnswerData}
-                            setNumAnswers={questionData.answers.length}
+                            setNumAnswers={setNumAnswers}
                             answerFavorited={answer.favorited}
                         />
                     ))}</>
