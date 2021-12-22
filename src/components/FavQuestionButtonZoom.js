@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-export default function FavQuestionButton({ token, questionId, loggedUserPk, isFavorited, setIsFavorited }) {
+export default function FavQuestionButtonZoom({ token, questionId, loggedUserPk, isFavoritedZoom, setIsFavoritedZoom }) {
     const handleSubmit = (event) => {
         const favoriteApi = `https://questions-t10.herokuapp.com/questions/${questionId}/`
         event.preventDefault()
@@ -17,9 +17,9 @@ export default function FavQuestionButton({ token, questionId, loggedUserPk, isF
             console.log(response.data)
             if (response) {
                 if (response.data.favorited.includes(loggedUserPk)) {
-                    setIsFavorited(true)
+                    setIsFavoritedZoom(true)
                 }
-                else setIsFavorited(false)
+                else setIsFavoritedZoom(false)
             }
         })
             .catch((error) => console.log(error.message))
@@ -29,7 +29,7 @@ export default function FavQuestionButton({ token, questionId, loggedUserPk, isF
     return (
         <>
 
-            {isFavorited ?
+            {isFavoritedZoom ?
                 <img className='fav-button' src='/unfav-star.png' alt='Unfavorite Button' onClick={(event) => handleSubmit(event)} />
                 :
                 <img className='fav-button' src='/fav-star.png' alt='Favorite Button' onClick={(event) => handleSubmit(event)} />

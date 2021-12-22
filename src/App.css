@@ -104,7 +104,7 @@ body {
   color: #280004;
 }
 
-.fav-button {
+.fav-container .fav-button {
   float: right;
 }
 

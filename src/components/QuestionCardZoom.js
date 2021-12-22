@@ -1,14 +1,26 @@
-import FavQuestionButton from "./FavQuestionButton"
+import FavQuestionButtonZoom from "./FavQuestionButtonZoom"
 import DeleteQuestionButton from "./DeleteQuestionButton"
 import UpvoteQuestionButton from "./UpvoteQuestionButton"
 import DownvoteQuestionButton from "./DownvoteQuestionButton"
 import EditQuestionButton from "./EditQuestionButton"
 import EditQuesionForm from "./EditQuestionForm"
-import { useState } from "react"
+import { useState, useEffect } from "react"
+import axios from 'axios'
 
 export default function QuestionCardZoom(props) {
     const {questionTitle, questionText, attachments, token, questionId, votes, setQuestionVotes, author, questionAuthorId, loggedUserPk, numAnswers, setQuestionText} = props
     const [questionEditMode, setQuestionEditMode] = useState(false)
+    const [isFavoritedZoom, setIsFavoritedZoom] = useState()
+    
+    useEffect(() => {
+        const idForUrl = questionId
+        const questionsUrl = `https://questions-t10.herokuapp.com/questions/${idForUrl}/`
+        axios
+          .get(questionsUrl)
+          .then((response) => {
+            if (response.data.favorited.includes(loggedUserPk)) {setIsFavoritedZoom(true)} else {setIsFavoritedZoom(false)}})
+        })
+    
 
     return (
         <div className='question-card-zoom card'>
@@ -36,9 +48,12 @@ export default function QuestionCardZoom(props) {
                 questionId={questionId}
                 setQuestionVotes={setQuestionVotes}
             />
-            <FavQuestionButton
+            <FavQuestionButtonZoom
                 token={token}
                 questionId={questionId}
+                loggedUserPk={loggedUserPk}
+                isFavoritedZoom={isFavoritedZoom}
+                setIsFavoritedZoom={setIsFavoritedZoom}
                 />
             {((questionAuthorId === loggedUserPk) && (numAnswers === 0)) ?
             <EditQuestionButton setQuestionEditMode={setQuestionEditMode}/>

@@ -13,7 +13,7 @@ export default function QuestionCard(props) {
           .get(questionsUrl)
           .then((response) => {
             if (response.data.favorited.includes(loggedUserPk)) {setIsFavorited(true)} else {setIsFavorited(false)}})
-        }, [])
+        })
 
     return (
         <div className='question-card container card'>

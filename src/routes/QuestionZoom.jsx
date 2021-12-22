@@ -17,7 +17,7 @@ export default function QuestionZoom({ token, loggedUserPk }) {
     const [questionText, setQuestionText] = useState()
 
     useEffect(() => {
-        const questionUrl = `https://questions-t10.herokuapp.com/questions/${params.questionId}`
+        const questionUrl = `https://questions-t10.herokuapp.com/questions/${params.questionId}/`
         axios
             .get(questionUrl)
             .then((response) => {
@@ -36,6 +36,7 @@ export default function QuestionZoom({ token, loggedUserPk }) {
     }, [params])
     return (
         <>
+            {questionData.pk ?
             <QuestionCardZoom
                 questionTitle={questionData.title}
                 questionText={questionText}
@@ -49,6 +50,7 @@ export default function QuestionZoom({ token, loggedUserPk }) {
                 numAnswers={numAnswers}
                 setQuestionText={setQuestionText}
                 attachments='Attachment Placeholder' />
+            : ''}
             {answerData.map((answer) => (
                 <ResponseCard
                     responseText={answer.body}
